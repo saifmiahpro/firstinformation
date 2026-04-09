@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="First In Formation - Découvrez les réussites de nos élèves">
     <title>Vos Réussites | First In Formation</title>
-    <link rel="icon" type="image/png" href="./assets/images/LOGO-FIRST_CONCIERGERIEpng-05.png">
+    <link rel="icon" type="image/png" href="./assets/images/LOGO NOIR.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <style>
@@ -32,7 +32,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--cream);
             color: var(--text-dark);
             line-height: 1.7;
@@ -251,8 +251,9 @@
         }
 
         .page-title {
+            font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
+            font-weight: 500;
             color: var(--white);
             line-height: 1.15;
             margin-bottom: 25px;
@@ -310,8 +311,9 @@
         }
 
         .section-title {
+            font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
+            font-weight: 500;
             line-height: 1.2;
             margin-bottom: 20px;
         }
@@ -347,8 +349,8 @@
         .stat-card {
             text-align: center;
             padding: 45px 25px;
-            background: var(--white-10);
-            border: 1px solid var(--white-10);
+            background: var(--white);
+            border: 1px solid #eee;
             border-radius: 20px;
             transition: all 0.4s ease;
             position: relative;
@@ -369,8 +371,9 @@
 
         .stat-card:hover {
             transform: translateY(-10px);
-            background: var(--white-20);
-            border-color: var(--green-lighter);
+            background: var(--white);
+            border-color: var(--green-accent);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
         }
 
         .stat-card:hover::before {
@@ -378,16 +381,17 @@
         }
 
         .stat-number {
+            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--green-lighter);
+            font-weight: 500;
+            color: var(--green-accent);
             line-height: 1;
             margin-bottom: 12px;
         }
 
         .stat-label {
             font-size: 14px;
-            color: var(--white-70);
+            color: #666;
             line-height: 1.5;
         }
 
@@ -503,8 +507,9 @@
         }
 
         .results-content h3 {
+            font-family: 'Playfair Display', serif;
             font-size: clamp(1.8rem, 3vw, 2.3rem);
-            font-weight: 700;
+            font-weight: 500;
             margin-bottom: 30px;
             color: var(--white);
         }
@@ -631,8 +636,9 @@
         }
 
         .cta-title {
+            font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 700;
+            font-weight: 500;
             color: var(--white);
             margin-bottom: 20px;
         }
@@ -795,7 +801,7 @@
 <!-- Navigation -->
 <nav class="nav">
     <a href="index.html" class="nav-logo">
-        <img src="./assets/images/Logo Conciergerie (1).png" alt="First In Formation" id="navLogo">
+        <img src="./assets/images/LOGO BLANC.png" alt="First In Formation" id="navLogo">
     </a>
     <div class="nav-links">
         <a href="index.html" class="nav-link">Accueil</a>
@@ -809,7 +815,7 @@
 <!-- Mobile Header -->
 <header class="mobile-header" id="mobileHeader">
     <a href="index.html">
-        <img src="./assets/images/Logo Conciergerie (1).png" alt="First In" id="mobileLogo">
+        <img src="./assets/images/LOGO BLANC.png" alt="First In" id="mobileLogo">
     </a>
     <div class="hamburger" id="hamburger">
         <span></span>
@@ -846,7 +852,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="section section-dark">
+    <section class="section section-cream">
         <div class="stats-grid">
             <div class="stat-card fade-up">
                 <div class="stat-number">450+</div>
@@ -1058,7 +1064,7 @@
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-logo">
-            <img src="./assets/images/Logo Conciergerie (1).png" alt="First In Formation">
+            <img src="./assets/images/LOGO BLANC.png" alt="First In Formation">
         </div>
         <div class="footer-links">
             <a href="index.html">Accueil</a>
@@ -1084,8 +1090,8 @@ const mobileHeader = document.getElementById('mobileHeader');
 const navLogo = document.getElementById('navLogo');
 const mobileLogo = document.getElementById('mobileLogo');
 
-const logoWhite = './assets/images/Logo Conciergerie (1).png';
-const logoDark = './assets/images/LOGO-FIRST_CONCIERGERIEpng-05.png';
+const logoWhite = './assets/images/LOGO BLANC.png';
+const logoDark = './assets/images/LOGO NOIR.png';
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {

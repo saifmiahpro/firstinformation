@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="First In Formation - Découvrez l'histoire de Yacine et de First In Conciergerie">
     <title>À Propos | First In Formation</title>
-    <link rel="icon" type="image/png" href="./assets/images/LOGO-FIRST_CONCIERGERIEpng-05.png">
+    <link rel="icon" type="image/png" href="./assets/images/LOGO NOIR.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -31,7 +31,7 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--cream);
             color: var(--text-dark);
             line-height: 1.7;
@@ -250,8 +250,9 @@
         }
 
         .page-title {
+            font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
+            font-weight: 500;
             color: var(--white);
             line-height: 1.15;
             margin-bottom: 25px;
@@ -309,8 +310,9 @@
         }
 
         .section-title {
+            font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
+            font-weight: 500;
             line-height: 1.2;
             margin-bottom: 20px;
         }
@@ -379,8 +381,9 @@
         }
 
         .story-content h2 {
+            font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 700;
+            font-weight: 500;
             margin-bottom: 30px;
             line-height: 1.2;
         }
@@ -543,22 +546,23 @@
             display: flex;
             gap: 25px;
             padding: 35px;
-            background: var(--white-10);
-            border: 1px solid var(--white-10);
+            background: var(--white);
+            border: 1px solid #eee;
             border-radius: 16px;
             transition: all 0.3s ease;
         }
 
         .value-card:hover {
-            background: var(--white-20);
-            border-color: var(--green-lighter);
+            background: var(--white);
+            border-color: var(--green-accent);
             transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
 
         .value-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--green-lighter);
+            color: var(--green-accent);
             line-height: 1;
             flex-shrink: 0;
         }
@@ -567,12 +571,12 @@
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 10px;
-            color: var(--white);
+            color: var(--text-dark);
         }
 
         .value-content p {
             font-size: 14px;
-            color: var(--white-70);
+            color: #666;
             line-height: 1.7;
         }
 
@@ -600,8 +604,9 @@
         }
 
         .cta-title {
+            font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 700;
+            font-weight: 500;
             color: var(--white);
             margin-bottom: 20px;
         }
@@ -775,7 +780,7 @@
 <!-- Navigation -->
 <nav class="nav">
     <a href="index.html" class="nav-logo">
-        <img src="./assets/images/Logo Conciergerie (1).png" alt="First In Formation" id="navLogo">
+        <img src="./assets/images/LOGO BLANC.png" alt="First In Formation" id="navLogo">
     </a>
     <div class="nav-links">
         <a href="index.html" class="nav-link">Accueil</a>
@@ -789,7 +794,7 @@
 <!-- Mobile Header -->
 <header class="mobile-header" id="mobileHeader">
     <a href="index.html">
-        <img src="./assets/images/Logo Conciergerie (1).png" alt="First In" id="mobileLogo">
+        <img src="./assets/images/LOGO BLANC.png" alt="First In" id="mobileLogo">
     </a>
     <div class="hamburger" id="hamburger">
         <span></span>
@@ -934,7 +939,7 @@
     </section>
 
     <!-- Values Section -->
-    <section class="section section-dark">
+    <section class="section section-cream">
         <div class="section-header">
             <div class="section-badge fade-up">Nos valeurs</div>
             <h2 class="section-title fade-up">Ce qui nous <span>définit</span></h2>
@@ -991,7 +996,7 @@
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-logo">
-            <img src="./assets/images/Logo Conciergerie (1).png" alt="First In Formation">
+            <img src="./assets/images/LOGO BLANC.png" alt="First In Formation">
         </div>
         <div class="footer-links">
             <a href="index.html">Accueil</a>
@@ -1016,8 +1021,8 @@ const mobileHeader = document.getElementById('mobileHeader');
 const navLogo = document.getElementById('navLogo');
 const mobileLogo = document.getElementById('mobileLogo');
 
-const logoWhite = './assets/images/Logo Conciergerie (1).png';
-const logoDark = './assets/images/LOGO-FIRST_CONCIERGERIEpng-05.png';
+const logoWhite = './assets/images/LOGO BLANC.png';
+const logoDark = './assets/images/LOGO NOIR.png';
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
