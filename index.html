@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First In Formation | Créez votre Conciergerie de Luxe</title>
+    <link rel="icon" type="image/png" href="./assets/images/LOGO-FIRST_CONCIERGERIEpng-05.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --black-light: #141414;
+            --black-soft: #1a1a1a;
+            --cream: #f8f6f3;
+            --cream-dark: #ebe7e0;
+            --white: #ffffff;
+            --accent: #1f6b52;
+            --accent-light: #268a69;
+            --text-muted: #888888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════════════════════ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 50px;
+        }
+
+        .nav-logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--black);
+            background: var(--white);
+            padding: 14px 30px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--cream);
+            transform: translateY(-2px);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           HERO - IMMERSIF
+           ═══════════════════════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .hero-bg video,
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(10, 10, 10, 0.95) 0%,
+                rgba(10, 10, 10, 0.7) 50%,
+                rgba(10, 10, 10, 0.4) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            padding: 0 50px;
+            padding-top: 100px;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 30px;
+        }
+
+        .hero-eyebrow span {
+            width: 40px;
+            height: 1px;
+            background: var(--accent-light);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 6vw, 80px);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--cream);
+        }
+
+        .hero-promise {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--cream);
+            margin-bottom: 15px;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 18px 35px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(255,255,255,0.15);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .hero-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .hero-stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           SECTION - LIGHT (CREAM)
+           ═══════════════════════════════════════════════════════ */
+        .section-light {
+            background: var(--cream);
+            color: var(--black);
+            padding: 150px 50px;
+        }
+
+        .section-dark {
+            background: var(--black);
+            color: var(--white);
+            padding: 150px 50px;
+        }
+
+        .section-black {
+            background: var(--black-light);
+            color: var(--white);
+            padding: 150px 50px;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           TRUST LOGOS
+           ═══════════════════════════════════════════════════════ */
+        .trust {
+            padding: 80px 50px;
+            background: var(--black-light);
+            text-align: center;
+        }
+
+        .trust-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .trust-items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .trust-item svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent-light);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           TRANSFORMATION SECTION
+           ═══════════════════════════════════════════════════════ */
+        .transformation {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .transformation-visual {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .transformation-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .transformation-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 80px;
+            background: var(--cream);
+            color: var(--black);
+        }
+
+        .section-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 4vw, 56px);
+            font-weight: 500;
+            line-height: 1.15;
+            margin-bottom: 25px;
+        }
+
+        .section-title em {
+            font-style: italic;
+        }
+
+        .section-text {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: var(--white);
+            border-left: 4px solid var(--accent);
+            padding: 25px 30px;
+            margin: 30px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .highlight-box p {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           FOUNDER STORY
+           ═══════════════════════════════════════════════════════ */
+        .founder {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .founder-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 80px;
+            background: var(--black);
+        }
+
+        .founder-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--cream);
+            margin: 40px 0;
+            padding-left: 30px;
+            border-left: 2px solid var(--accent);
+        }
+
+        .founder-signature {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .founder-signature img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .founder-signature-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .founder-signature-role {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .founder-visual {
+            position: relative;
+        }
+
+        .founder-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-badge {
+            position: absolute;
+            bottom: 50px;
+            left: -40px;
+            background: var(--white);
+            color: var(--black);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .founder-badge-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .founder-badge-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           MODULES - CARDS INTERACTIVES
+           ═══════════════════════════════════════════════════════ */
+        .modules {
+            padding: 150px 50px;
+            background: var(--black-light);
+        }
+
+        .modules-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .module-card {
+            background: var(--black-soft);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .module-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-light);
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .module-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .module-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .module-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .module-tag {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent-light);
+            background: rgba(31, 107, 82, 0.15);
+            padding: 6px 12px;
+            border-radius: 50px;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           IMMERSION VISUELLE
+           ═══════════════════════════════════════════════════════ */
+        .immersion {
+            height: 80vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .immersion-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .immersion-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .immersion-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.6);
+        }
+
+        .immersion-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 30px;
+        }
+
+        .immersion-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .immersion-title em {
+            font-style: italic;
+            color: var(--cream);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           TÉMOIGNAGES VISUELS
+           ═══════════════════════════════════════════════════════ */
+        .testimonials {
+            padding: 150px 50px;
+            background: var(--cream);
+            color: var(--black);
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+        }
+
+        .testimonial-stars {
+            color: #f59e0b;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-author img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testimonial-author-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .testimonial-author-result {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           OFFRE / PRICING
+           ═══════════════════════════════════════════════════════ */
+        .offer {
+            padding: 150px 50px;
+            background: var(--black);
+        }
+
+        .offer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .offer-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        .offer-list {
+            list-style: none;
+            margin: 40px 0;
+        }
+
+        .offer-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .offer-list li svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent-light);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .offer-card {
+            background: linear-gradient(135deg, var(--black-soft) 0%, var(--black-light) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .offer-card-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+
+        .offer-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .offer-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           CTA FINAL
+           ═══════════════════════════════════════════════════════ */
+        .cta-final {
+            padding: 150px 50px;
+            text-align: center;
+            background: var(--cream);
+            color: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(31, 107, 82, 0.05) 0%, transparent 50%);
+        }
+
+        .cta-final-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-final-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 500;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .cta-final-title em {
+            font-style: italic;
+        }
+
+        .cta-final-desc {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .cta-final .btn-primary {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .cta-final .btn-primary:hover {
+            background: var(--accent);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════════════ */
+        .footer {
+            padding: 60px 50px;
+            background: var(--black);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            height: 35px;
+            opacity: 0.7;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           WHATSAPP
+           ═══════════════════════════════════════════════════════ */
+        .whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           REVEAL ANIMATIONS
+           ═══════════════════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+
+        /* ═══════════════════════════════════════════════════════
+           MOBILE RESPONSIVE
+           ═══════════════════════════════════════════════════════ */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+        }
+
+        @media (max-width: 1024px) {
+            .nav { padding: 20px 30px; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
+
+            .hero-content { padding: 120px 30px 50px; }
+            .hero-stats { flex-wrap: wrap; gap: 30px; }
+
+            .transformation,
+            .founder {
+                grid-template-columns: 1fr;
+            }
+
+            .transformation-content,
+            .founder-content {
+                padding: 80px 30px;
+            }
+
+            .transformation-visual,
+            .founder-visual {
+                height: 50vh;
+            }
+
+            .modules-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-light,
+            .section-dark,
+            .section-black,
+            .modules,
+            .testimonials,
+            .offer,
+            .cta-final {
+                padding: 100px 30px;
+            }
+
+            .offer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .founder-badge {
+                left: 20px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title { font-size: 38px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+
+            .section-title { font-size: 32px; }
+
+            .hero-stats { gap: 20px; }
+            .hero-stat-number { font-size: 32px; }
+
+            .module-card { padding: 30px; }
+            .testimonial-card { padding: 30px; }
+
+            .immersion-title { font-size: 32px; }
+
+            .cta-final-title { font-size: 32px; }
+
+            .whatsapp { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">
+        <img src="./assets/images/Logo Conciergerie (1).png" alt="First In">
+    </a>
+    <div class="nav-links">
+        <a href="presentation.html">Présentation</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="vos-reussites.html">Réussites</a>
+        <a href="https://wa.me/33744934330" class="nav-cta">Réserver un appel</a>
+    </div>
+    <div class="mobile-menu-btn">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-bg">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80" alt="Dubai Luxury">
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <div class="hero-eyebrow reveal">
+            <span></span>
+            Présentation offerte
+        </div>
+        <h1 class="hero-title reveal">
+            Lancez votre <em>Conciergerie de Luxe</em>
+        </h1>
+        <p class="hero-promise reveal">Générez 10 000€/mois en 90 jours.</p>
+        <p class="hero-desc reveal">
+            La formation complète pour créer votre business de conciergerie haut de gamme, avec un réseau de +220 partenaires exclusifs.
+        </p>
+        <div class="hero-buttons">
+            <a href="https://wa.me/33744934330" class="btn btn-primary reveal">
+                Réserver ma présentation gratuite
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#transformation" class="btn btn-outline reveal">Découvrir</a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="reveal">
+                <div class="hero-stat-number">+450</div>
+                <div class="hero-stat-label">Élèves formés</div>
+            </div>
+            <div class="reveal">
+                <div class="hero-stat-number">+6M€</div>
+                <div class="hero-stat-label">Générés par nos élèves</div>
+            </div>
+            <div class="reveal">
+                <div class="hero-stat-number">6</div>
+                <div class="hero-stat-label">Pays représentés</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Bar -->
+<section class="trust">
+    <p class="trust-label">Ils nous font confiance</p>
+    <div class="trust-items">
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Formation certifiante
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Accompagnement 24/7
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Réseau international
+        </div>
+        <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            4.9/5 de satisfaction
+        </div>
+    </div>
+</section>
+
+<!-- Transformation -->
+<section class="transformation" id="transformation">
+    <div class="transformation-visual">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Luxury Lifestyle">
+    </div>
+    <div class="transformation-content">
+        <p class="section-eyebrow reveal-left">La promesse</p>
+        <h2 class="section-title reveal-left">
+            Transformez votre vie en <em>90 jours</em>
+        </h2>
+        <p class="section-text reveal-left">
+            La conciergerie de luxe n'est pas qu'un métier. C'est un art de vivre qui vous ouvre les portes d'un monde d'exception.
+        </p>
+        <div class="highlight-box reveal-left">
+            <p>Notre méthode a déjà permis à +450 personnes de générer leurs premiers revenus dans l'univers du luxe.</p>
+        </div>
+        <p class="section-text reveal-left">
+            Yachts privés, jets, villas d'exception, événements exclusifs... Devenez l'interlocuteur privilégié d'une clientèle ultra-premium.
+        </p>
+        <a href="presentation.html" class="btn btn-primary reveal-left" style="background: var(--accent); color: var(--white); margin-top: 30px;">
+            Découvrir la formation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</section>
+
+<!-- Founder -->
+<section class="founder" id="founder">
+    <div class="founder-content">
+        <p class="section-eyebrow reveal">Le fondateur</p>
+        <h2 class="section-title reveal">
+            Salut, moi c'est <em>Yacine</em>
+        </h2>
+        <p class="section-text reveal" style="color: var(--text-muted);">
+            Présent à Dubaï depuis plus de 6 ans, j'ai construit un réseau de +220 partenaires de confiance dans le monde entier. Aujourd'hui, je transmets tout ce que j'ai appris.
+        </p>
+        <blockquote class="founder-quote reveal">
+            "Je n'ai jamais fait partie de ceux qui attendent que les opportunités leur tombent dessus. Je les crée."
+        </blockquote>
+        <div class="founder-signature reveal">
+            <img src="./assets/images/image.png" alt="Yacine">
+            <div>
+                <p class="founder-signature-name">Yacine</p>
+                <p class="founder-signature-role">Fondateur, First In Conciergerie</p>
+            </div>
+        </div>
+        <a href="a-propos.html" class="btn btn-outline reveal" style="margin-top: 40px;">
+            Mon histoire complète
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+    <div class="founder-visual">
+        <img src="./assets/images/image.png" alt="Yacine">
+        <div class="founder-badge reveal">
+            <div class="founder-badge-number">+6</div>
+            <div class="founder-badge-label">années à Dubaï</div>
+        </div>
+    </div>
+</section>
+
+<!-- Immersion -->
+<section class="immersion">
+    <div class="immersion-bg">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" alt="Luxury Villa">
+    </div>
+    <div class="immersion-overlay"></div>
+    <div class="immersion-content">
+        <h2 class="immersion-title reveal">
+            Accédez à un monde <em>d'exception</em>
+        </h2>
+        <a href="presentation.html" class="btn btn-primary reveal">
+            Rejoindre First In
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</section>
+
+<!-- Modules -->
+<section class="modules">
+    <div class="modules-header">
+        <p class="section-eyebrow reveal">Le programme</p>
+        <h2 class="section-title reveal" style="color: var(--white);">
+            Une formation <em>complète</em>
+        </h2>
+        <p class="section-text reveal" style="color: var(--text-muted);">
+            Tout ce dont vous avez besoin pour lancer et développer votre conciergerie de luxe.
+        </p>
+    </div>
+
+    <div class="modules-grid">
+        <div class="module-card reveal">
+            <div class="module-number">MODULE 01</div>
+            <h3 class="module-title">Mindset & Vision</h3>
+            <p class="module-desc">Développez l'état d'esprit d'un entrepreneur du luxe. Pensez grand, agissez avec précision.</p>
+            <div class="module-tags">
+                <span class="module-tag">Mindset</span>
+                <span class="module-tag">Leadership</span>
+            </div>
+        </div>
+
+        <div class="module-card reveal">
+            <div class="module-number">MODULE 02</div>
+            <h3 class="module-title">Business Model</h3>
+            <p class="module-desc">Structurez votre offre, définissez vos prix, créez une proposition de valeur irrésistible.</p>
+            <div class="module-tags">
+                <span class="module-tag">Stratégie</span>
+                <span class="module-tag">Pricing</span>
+            </div>
+        </div>
+
+        <div class="module-card reveal">
+            <div class="module-number">MODULE 03</div>
+            <h3 class="module-title">Réseau Premium</h3>
+            <p class="module-desc">Accédez à notre carnet d'adresses exclusif : hôtels, jets, yachts, événements VIP.</p>
+            <div class="module-tags">
+                <span class="module-tag">+220 partenaires</span>
+                <span class="module-tag">Worldwide</span>
+            </div>
+        </div>
+
+        <div class="module-card reveal">
+            <div class="module-number">MODULE 04</div>
+            <h3 class="module-title">Acquisition Clients</h3>
+            <p class="module-desc">Les stratégies pour attirer une clientèle ultra-premium qui paie sans négocier.</p>
+            <div class="module-tags">
+                <span class="module-tag">Marketing</span>
+                <span class="module-tag">Prospection</span>
+            </div>
+        </div>
+
+        <div class="module-card reveal">
+            <div class="module-number">MODULE 05</div>
+            <h3 class="module-title">Excellence Opérationnelle</h3>
+            <p class="module-desc">Maîtrisez l'art du service irréprochable. Chaque détail compte dans le luxe.</p>
+            <div class="module-tags">
+                <span class="module-tag">Service</span>
+                <span class="module-tag">Process</span>
+            </div>
+        </div>
+
+        <div class="module-card reveal">
+            <div class="module-number">MODULE 06</div>
+            <h3 class="module-title">Scale & Automatisation</h3>
+            <p class="module-desc">Passez de 10K à 50K€/mois en structurant et automatisant votre business.</p>
+            <div class="module-tags">
+                <span class="module-tag">Croissance</span>
+                <span class="module-tag">Systèmes</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Témoignages -->
+<section class="testimonials">
+    <div class="testimonials-header">
+        <p class="section-eyebrow reveal">Témoignages</p>
+        <h2 class="section-title reveal">
+            Ils ont transformé <em>leur vie</em>
+        </h2>
+    </div>
+
+    <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"En 4 mois, j'ai complètement changé de vie. Je génère maintenant 4 500€/mois avec ma propre conciergerie."</p>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sophia">
+                <div>
+                    <p class="testimonial-author-name">Sophia M.</p>
+                    <p class="testimonial-author-result">+4 500€/mois</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Le réseau de partenaires est incroyable. J'ai signé mon premier client à 15K€ grâce à leurs contacts."</p>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Thomas">
+                <div>
+                    <p class="testimonial-author-name">Thomas R.</p>
+                    <p class="testimonial-author-result">Premier client à 15K€</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"L'accompagnement est exceptionnel. Yacine répond à toutes mes questions, même le dimanche."</p>
+            <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Marie">
+                <div>
+                    <p class="testimonial-author-name">Marie L.</p>
+                    <p class="testimonial-author-result">+8 000€/mois</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Offre -->
+<section class="offer">
+    <div class="offer-container">
+        <div class="offer-content">
+            <p class="section-eyebrow">L'offre</p>
+            <h2>Tout ce dont vous avez besoin</h2>
+            <ul class="offer-list">
+                <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    6 modules de formation vidéo complets
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Accès à +220 partenaires premium
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Templates et scripts de prospection
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Communauté privée d'entraide
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Accompagnement personnalisé 24/7
+                </li>
+            </ul>
+        </div>
+        <div class="offer-card reveal">
+            <p class="offer-card-label">Présentation gratuite</p>
+            <h3 class="offer-card-title">Découvrez si cette formation est faite pour vous</h3>
+            <a href="https://wa.me/33744934330" class="btn btn-primary">
+                Réserver mon appel gratuit
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Final -->
+<section class="cta-final">
+    <div class="cta-final-content">
+        <h2 class="cta-final-title reveal">
+            Prêt à créer <em>votre avenir</em> ?
+        </h2>
+        <p class="cta-final-desc reveal">
+            Rejoignez +450 élèves qui ont transformé leur vie grâce à First In Formation.
+        </p>
+        <a href="https://wa.me/33744934330" class="btn btn-primary reveal">
+            Réserver ma présentation gratuite
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <a href="index.html" class="footer-logo">
+        <img src="./assets/images/Logo Conciergerie (1).png" alt="First In">
+    </a>
+    <nav class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="presentation.html">Présentation</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="vos-reussites.html">Réussites</a>
+    </nav>
+    <p class="footer-copy">© 2024 First In Formation. Tous droits réservés.</p>
+</footer>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/33744934330" target="_blank" class="whatsapp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
+
+// Reveal animations
+document.querySelectorAll('.reveal').forEach(el => {
+    gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+            trigger: el,
+            start: 'top 85%'
+        }
+    });
+});
+
+document.querySelectorAll('.reveal-left').forEach(el => {
+    gsap.to(el, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+            trigger: el,
+            start: 'top 85%'
+        }
+    });
+});
+
+document.querySelectorAll('.reveal-right').forEach(el => {
+    gsap.to(el, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+            trigger: el,
+            start: 'top 85%'
+        }
+    });
+});
+
+// Parallax hero
+gsap.to('.hero-bg img', {
+    yPercent: 30,
+    ease: 'none',
+    scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+    }
+});
+
+// Parallax immersion
+gsap.to('.immersion-bg img', {
+    yPercent: 20,
+    ease: 'none',
+    scrollTrigger: {
+        trigger: '.immersion',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+    }
+});
+</script>
+
+</body>
+</html>

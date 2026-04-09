@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="First In Formation - Découvrez les réussites de nos élèves">
+    <title>Vos Réussites | First In Formation</title>
+    <link rel="icon" type="image/png" href="./assets/images/LOGO-FIRST_CONCIERGERIEpng-05.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #16332d;
+            --bg-darker: #0f2420;
+            --bg-darkest: #0a1a16;
+            --accent: #24775f;
+            --gold: #b89c26;
+            --white: #ffffff;
+            --white-90: rgba(255,255,255,0.9);
+            --white-70: rgba(255,255,255,0.7);
+            --white-50: rgba(255,255,255,0.5);
+            --white-20: rgba(255,255,255,0.2);
+            --white-10: rgba(255,255,255,0.1);
+            --white-05: rgba(255,255,255,0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg-darker); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-darker); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-dark);
+            color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        ::selection { background: var(--gold); color: var(--bg-dark); }
+
+        .sidebar {
+            position: fixed; left: 0; top: 0; bottom: 0; width: 240px;
+            background: rgba(10, 26, 22, 0.95); backdrop-filter: blur(20px);
+            z-index: 1000; display: flex; flex-direction: column; padding: 40px 0;
+            border-right: 1px solid var(--white-05);
+        }
+        .sidebar-logo { padding: 0 35px; margin-bottom: 60px; }
+        .sidebar-logo img { height: 55px; filter: brightness(0) invert(1); }
+        .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 6px; padding: 0 20px; }
+        .sidebar-link {
+            color: var(--white-50); text-decoration: none; font-size: 14px;
+            font-weight: 400; font-style: italic; padding: 16px 20px;
+            border-radius: 12px; transition: all 0.3s ease; position: relative;
+        }
+        .sidebar-link::before {
+            content: ''; position: absolute; left: 0; top: 0; height: 100%;
+            width: 3px; background: var(--gold); transform: scaleY(0); transition: transform 0.3s ease;
+        }
+        .sidebar-link:hover, .sidebar-link.active { color: var(--white); background: var(--white-05); }
+        .sidebar-link.active::before, .sidebar-link:hover::before { transform: scaleY(1); }
+        .sidebar-footer { padding: 30px 35px; border-top: 1px solid var(--white-05); }
+        .sidebar-phone { color: var(--gold); text-decoration: none; font-size: 13px; font-style: italic; display: flex; align-items: center; gap: 10px; }
+
+        .main { margin-left: 240px; }
+
+        .page-hero {
+            min-height: 70vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-darkest) 0%, var(--bg-dark) 100%);
+        }
+        .page-hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(184, 156, 38, 0.1) 0%, transparent 60%);
+        }
+        .page-hero-content { position: relative; z-index: 1; padding: 60px; max-width: 900px; }
+
+        .section-badge {
+            display: inline-block; font-size: 11px; font-weight: 600; font-style: italic;
+            letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 30px;
+        }
+        .page-title {
+            font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.1; margin-bottom: 30px; font-weight: 400;
+        }
+        .page-title span { color: var(--gold); font-style: italic; }
+        .page-subtitle {
+            font-size: 18px; font-weight: 300; font-style: italic;
+            color: var(--white-70); max-width: 700px; margin: 0 auto; line-height: 1.9;
+        }
+
+        .section { padding: 120px 80px; position: relative; }
+        .section-dark { background: var(--bg-darkest); }
+        .section-darker { background: var(--bg-darker); }
+
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 80px; }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.15; margin-bottom: 25px; font-weight: 400;
+        }
+        .section-title span { color: var(--gold); font-style: italic; }
+        .section-subtitle { font-size: 18px; font-weight: 300; font-style: italic; color: var(--white-70); line-height: 1.9; }
+
+        /* Stats */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 40px; max-width: 1200px; margin: 0 auto;
+        }
+        .stat-card {
+            text-align: center; padding: 50px 30px;
+            background: linear-gradient(180deg, var(--white-10) 0%, var(--white-05) 100%);
+            border: 1px solid var(--white-10); border-radius: 24px;
+            transition: all 0.4s ease; position: relative; overflow: hidden;
+        }
+        .stat-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--accent));
+            transform: scaleX(0); transition: transform 0.4s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-15px); background: var(--white-10);
+            border-color: var(--gold); box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+        .stat-card:hover::before { transform: scaleX(1); }
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif; font-size: 4.5rem;
+            font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 15px;
+        }
+        .stat-label { font-size: 14px; font-style: italic; color: var(--white-70); line-height: 1.6; }
+
+        /* Testimonials */
+        .testimonials-wrapper { overflow: hidden; }
+        .swiper { padding: 20px 0 60px; overflow: visible; }
+        .swiper-slide { height: auto; }
+
+        .testimonial-card {
+            background: var(--white-05); border: 1px solid var(--white-10);
+            border-radius: 24px; padding: 50px 40px; height: 100%;
+            display: flex; flex-direction: column; transition: all 0.4s ease; position: relative;
+        }
+        .testimonial-card:hover { background: var(--white-10); border-color: var(--gold); transform: translateY(-10px); }
+
+        .testimonial-badge {
+            position: absolute; top: -12px; left: 40px;
+            background: var(--accent); color: var(--white);
+            font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+            padding: 8px 20px; border-radius: 50px; text-transform: uppercase;
+        }
+
+        .testimonial-header { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; margin-top: 10px; }
+        .testimonial-avatar { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; }
+        .testimonial-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; margin-bottom: 5px; }
+        .testimonial-result { color: var(--gold); font-size: 15px; font-weight: 600; }
+        .testimonial-stars { color: var(--gold); font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 20px; }
+        .testimonial-text { font-size: 16px; font-style: italic; color: var(--white-70); line-height: 1.9; flex: 1; }
+
+        .swiper-pagination-bullet { background: var(--white-50); opacity: 1; width: 12px; height: 12px; }
+        .swiper-pagination-bullet-active { background: var(--gold); }
+
+        /* Video testimonials */
+        .video-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 30px; max-width: 1200px; margin: 0 auto;
+        }
+        .video-card {
+            position: relative; border-radius: 20px; overflow: hidden;
+            aspect-ratio: 9/16; background: var(--bg-darkest);
+            border: 1px solid var(--white-10); transition: all 0.4s ease;
+        }
+        .video-card:hover { border-color: var(--gold); transform: scale(1.02); }
+        .video-card img { width: 100%; height: 100%; object-fit: cover; }
+        .video-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.8) 100%);
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 25px;
+        }
+        .video-play {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 70px; height: 70px; background: var(--gold);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .video-card:hover .video-play { transform: translate(-50%, -50%) scale(1.1); }
+        .video-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; margin-bottom: 5px; }
+        .video-result { color: var(--gold); font-size: 14px; font-weight: 600; }
+
+        /* Results showcase */
+        .results-showcase {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 60px; max-width: 1100px; margin: 0 auto; align-items: center;
+        }
+        .results-content h3 {
+            font-family: 'Cormorant Garamond', serif; font-size: 2.5rem;
+            margin-bottom: 30px; font-weight: 400;
+        }
+        .results-content h3 span { color: var(--gold); font-style: italic; }
+        .result-item {
+            display: flex; align-items: center; gap: 20px;
+            padding: 25px; background: var(--white-05); border-radius: 16px;
+            margin-bottom: 20px; transition: all 0.3s ease;
+        }
+        .result-item:hover { background: var(--white-10); transform: translateX(10px); }
+        .result-icon {
+            width: 50px; height: 50px; background: var(--gold); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .result-text h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; margin-bottom: 5px; }
+        .result-text p { font-size: 14px; color: var(--white-70); font-style: italic; }
+
+        .results-chart {
+            background: var(--white-05); border: 1px solid var(--white-10);
+            border-radius: 24px; padding: 40px; text-align: center;
+        }
+        .chart-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-style: italic; margin-bottom: 30px; color: var(--gold); }
+        .chart-bars { display: flex; justify-content: space-around; align-items: flex-end; height: 200px; gap: 15px; }
+        .chart-bar {
+            width: 60px; background: linear-gradient(180deg, var(--gold), var(--accent));
+            border-radius: 8px 8px 0 0; transition: all 0.3s ease; position: relative;
+        }
+        .chart-bar:hover { transform: scaleY(1.05); }
+        .chart-bar-label {
+            position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%);
+            font-size: 12px; color: var(--white-70); white-space: nowrap;
+        }
+        .chart-bar-value {
+            position: absolute; top: -25px; left: 50%; transform: translateX(-50%);
+            font-size: 14px; font-weight: 600; color: var(--gold);
+        }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: var(--white); color: var(--accent);
+            font-size: 13px; font-weight: 700; font-style: italic;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 20px 40px; border-radius: 50px; text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover {
+            background: var(--gold); color: var(--bg-dark);
+            transform: translateY(-4px); box-shadow: 0 20px 40px rgba(184, 156, 38, 0.3);
+        }
+
+        .cta-section {
+            padding: 150px 80px; text-align: center;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--accent) 100%);
+            position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></svg>');
+            background-size: 100px;
+        }
+        .cta-content { position: relative; z-index: 1; }
+        .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 25px; font-weight: 400; }
+        .cta-text { font-size: 20px; font-style: italic; color: var(--white-90); margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8; }
+
+        .whatsapp-btn {
+            position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px;
+            background: #25D366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4); z-index: 999;
+            transition: all 0.3s ease; text-decoration: none;
+        }
+        .whatsapp-btn:hover { transform: scale(1.1) translateY(-5px); }
+
+        .mobile-header {
+            display: none; position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10, 26, 22, 0.98); backdrop-filter: blur(20px);
+            padding: 18px 24px; z-index: 1001; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--white-05);
+        }
+        .hamburger { width: 30px; height: 22px; position: relative; cursor: pointer; }
+        .hamburger span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--white); transition: all 0.3s ease; border-radius: 2px; }
+        .hamburger span:nth-child(1) { top: 0; }
+        .hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .hamburger span:nth-child(3) { bottom: 0; width: 60%; }
+        .hamburger.active span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { bottom: 50%; width: 100%; transform: translateY(50%) rotate(-45deg); }
+        .mobile-menu {
+            position: fixed; inset: 0; background: var(--bg-darkest); z-index: 1000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            gap: 30px; opacity: 0; visibility: hidden; transition: all 0.4s ease;
+        }
+        .mobile-menu.active { opacity: 1; visibility: visible; }
+        .mobile-menu a { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-style: italic; color: var(--white); text-decoration: none; }
+        .mobile-menu a:hover { color: var(--gold); }
+
+        .reveal { opacity: 0; transform: translateY(60px); }
+
+        .footer { padding: 60px 80px; background: var(--bg-darkest); border-top: 1px solid var(--white-05); }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; }
+        .footer-logo img { height: 40px; filter: brightness(0) invert(1); }
+        .footer-links { display: flex; gap: 40px; }
+        .footer-links a { color: var(--white-50); text-decoration: none; font-size: 14px; font-style: italic; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-copy { color: var(--white-50); font-size: 13px; font-style: italic; }
+
+        @media (max-width: 1024px) {
+            .sidebar { display: none; }
+            .mobile-header { display: flex; }
+            .main { margin-left: 0; }
+            .section { padding: 80px 30px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+            .results-showcase { grid-template-columns: 1fr; gap: 50px; }
+            .cta-section { padding: 100px 30px; }
+            .footer { margin-left: 0; padding: 40px 30px; }
+        }
+        @media (max-width: 768px) {
+            .page-title { font-size: 2.5rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .stat-number { font-size: 3rem; }
+            .video-grid { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<aside class="sidebar">
+    <a href="index.html" class="sidebar-logo"><img src="./assets/images/Logo Conciergerie (1).png" alt="First In Formation"></a>
+    <nav class="sidebar-nav">
+        <a href="index.html" class="sidebar-link">Accueil</a>
+        <a href="presentation.html" class="sidebar-link">Présentation</a>
+        <a href="a-propos.html" class="sidebar-link">À propos</a>
+        <a href="vos-reussites.html" class="sidebar-link active">Vos réussites</a>
+        <a href="#contact" class="sidebar-link">Contactez-nous</a>
+    </nav>
+    <div class="sidebar-footer">
+        <a href="tel:+33744934330" class="sidebar-phone">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            +33 7 44 93 43 30
+        </a>
+    </div>
+</aside>
+
+<header class="mobile-header">
+    <a href="index.html"><img src="./assets/images/Logo Conciergerie (1).png" alt="First In" style="height: 38px; filter: brightness(0) invert(1);"></a>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Accueil</a>
+    <a href="presentation.html">Présentation</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="vos-reussites.html">Vos réussites</a>
+    <a href="#contact">Contactez-nous</a>
+</div>
+
+<a href="https://wa.me/33744934330" target="_blank" class="whatsapp-btn">
+    <svg width="30" height="30" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<main class="main">
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <div class="section-badge reveal">Vos réussites</div>
+            <h1 class="page-title reveal">LEURS VIES <span>ONT CHANGÉ</span></h1>
+            <p class="page-subtitle reveal">
+                Grâce à First In Formation, plus de 450 élèves ont transformé leur vie et atteint l'indépendance financière. Découvrez leurs parcours inspirants.
+            </p>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <div class="stat-number">+ 450</div>
+                <div class="stat-label">Élèves inscrits dans notre formation</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-number">+ 6M</div>
+                <div class="stat-label">D'euros générés par nos élèves</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-number">+ 220</div>
+                <div class="stat-label">Partenaires à travers le monde</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-number">+ 6</div>
+                <div class="stat-label">Pays où nous travaillons au quotidien</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section testimonials-wrapper">
+        <div class="section-header">
+            <div class="section-badge reveal">Témoignages</div>
+            <h2 class="section-title reveal">Ce qu'ils <span>en disent</span></h2>
+            <p class="section-subtitle reveal">Des résultats concrets, des vies transformées</p>
+        </div>
+
+        <div class="swiper testimonials-swiper reveal">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge">AVIS</div>
+                        <div class="testimonial-header">
+                            <img src="https://i.pravatar.cc/200?img=47" alt="Sophia M." class="testimonial-avatar">
+                            <div class="testimonial-info"><h4>Sophia M.</h4><div class="testimonial-result">4 500€/mois</div></div>
+                        </div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"En 4 mois, j'ai complètement transformé ma vie. J'étais secrétaire médicale, aujourd'hui je génère 4 500€/mois avec ma propre conciergerie. Un investissement qui a changé mon quotidien et celui de ma famille."</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge">AVIS</div>
+                        <div class="testimonial-header">
+                            <img src="https://i.pravatar.cc/200?img=12" alt="Karim B." class="testimonial-avatar">
+                            <div class="testimonial-info"><h4>Karim B.</h4><div class="testimonial-result">8 200€/mois</div></div>
+                        </div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"J'ai quitté mon CDI après 6 mois de formation. Aujourd'hui je gagne 3x plus en travaillant 2x moins. Yacine et son équipe m'ont donné toutes les clés pour réussir. Une décision que je ne regrette pas."</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge">AVIS</div>
+                        <div class="testimonial-header">
+                            <img src="https://i.pravatar.cc/200?img=44" alt="Léa D." class="testimonial-avatar">
+                            <div class="testimonial-info"><h4>Léa D.</h4><div class="testimonial-result">5 800€/mois</div></div>
+                        </div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Maman de deux enfants, je cherchais une activité flexible. Grâce à First In, je concilie parfaitement vie pro et perso tout en générant 5 800€/mois. Cette formation a changé notre quotidien."</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge">AVIS</div>
+                        <div class="testimonial-header">
+                            <img src="https://i.pravatar.cc/200?img=33" alt="Thomas R." class="testimonial-avatar">
+                            <div class="testimonial-info"><h4>Thomas R.</h4><div class="testimonial-result">12 000€/mois</div></div>
+                        </div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Ancien commercial dans l'automobile, j'ai lancé ma conciergerie il y a 8 mois. Les résultats ont dépassé toutes mes attentes : 12 000€/mois de CA. Le réseau de partenaires est incroyable."</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge">AVIS</div>
+                        <div class="testimonial-header">
+                            <img src="https://i.pravatar.cc/200?img=26" alt="Amina K." class="testimonial-avatar">
+                            <div class="testimonial-info"><h4>Amina K.</h4><div class="testimonial-result">6 700€/mois</div></div>
+                        </div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Le réseau de partenaires est ce qui fait la différence. Grâce à First In, j'ai accès à des contacts exclusifs que je n'aurais jamais pu avoir seule. Un vrai game changer pour mon business."</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-badge">AVIS</div>
+                        <div class="testimonial-header">
+                            <img src="https://i.pravatar.cc/200?img=59" alt="Marc L." class="testimonial-avatar">
+                            <div class="testimonial-info"><h4>Marc L.</h4><div class="testimonial-result">9 500€/mois</div></div>
+                        </div>
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"La formation est ultra complète et Yacine est toujours disponible pour nous accompagner. J'ai doublé mes revenus en moins d'un an. Je recommande à 100% pour ceux qui veulent changer de vie."</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <section class="section section-darker">
+        <div class="results-showcase">
+            <div class="results-content">
+                <div class="section-badge reveal">Résultats concrets</div>
+                <h3 class="reveal">Pourquoi nos élèves <span>réussissent</span></h3>
+
+                <div class="result-item reveal">
+                    <div class="result-icon"><svg width="24" height="24" fill="none" stroke="var(--bg-dark)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="result-text"><h4>Méthode éprouvée</h4><p>Plus de 450 success stories avec notre système</p></div>
+                </div>
+                <div class="result-item reveal">
+                    <div class="result-icon"><svg width="24" height="24" fill="none" stroke="var(--bg-dark)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="result-text"><h4>Accompagnement premium</h4><p>Mentoring personnalisé tout au long du parcours</p></div>
+                </div>
+                <div class="result-item reveal">
+                    <div class="result-icon"><svg width="24" height="24" fill="none" stroke="var(--bg-dark)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="result-text"><h4>Réseau exclusif</h4><p>Accès à 220+ partenaires vérifiés dans le monde</p></div>
+                </div>
+                <div class="result-item reveal">
+                    <div class="result-icon"><svg width="24" height="24" fill="none" stroke="var(--bg-dark)" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div>
+                    <div class="result-text"><h4>Support à vie</h4><p>Communauté et assistance même après la formation</p></div>
+                </div>
+            </div>
+
+            <div class="results-chart reveal">
+                <div class="chart-title">Revenus moyens de nos élèves</div>
+                <div class="chart-bars">
+                    <div class="chart-bar" style="height: 40%;"><span class="chart-bar-value">2K€</span><span class="chart-bar-label">Mois 1</span></div>
+                    <div class="chart-bar" style="height: 55%;"><span class="chart-bar-value">4K€</span><span class="chart-bar-label">Mois 3</span></div>
+                    <div class="chart-bar" style="height: 75%;"><span class="chart-bar-value">6K€</span><span class="chart-bar-label">Mois 6</span></div>
+                    <div class="chart-bar" style="height: 90%;"><span class="chart-bar-value">8K€</span><span class="chart-bar-label">Mois 9</span></div>
+                    <div class="chart-bar" style="height: 100%;"><span class="chart-bar-value">10K€+</span><span class="chart-bar-label">Mois 12</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <div class="section-badge reveal">Votre tour</div>
+            <h2 class="cta-title reveal">Et vous, êtes-vous prêt ?</h2>
+            <p class="cta-text reveal">Rejoignez notre communauté de 450+ élèves qui ont transformé leur vie. Votre success story commence ici.</p>
+            <a href="https://wa.me/33744934330" class="btn-primary reveal">
+                Réserver ma présentation offerte
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer" style="margin-left: 240px;">
+    <div class="footer-content">
+        <div class="footer-logo"><img src="./assets/images/Logo Conciergerie (1).png" alt="First In Formation"></div>
+        <div class="footer-links">
+            <a href="index.html">Accueil</a>
+            <a href="presentation.html">Présentation</a>
+            <a href="a-propos.html">À propos</a>
+            <a href="vos-reussites.html">Vos réussites</a>
+        </div>
+        <p class="footer-copy">© 2026 First In Formation. Tous droits réservés.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+document.querySelectorAll('.reveal').forEach(el => {
+    gsap.fromTo(el, { opacity: 0, y: 60 }, {
+        opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' }
+    });
+});
+
+// Stats counter animation
+document.querySelectorAll('.stat-number').forEach(el => {
+    const text = el.textContent;
+    const hasPlus = text.includes('+');
+    const hasM = text.includes('M');
+    const number = parseInt(text.replace(/[^0-9]/g, ''));
+    gsap.fromTo(el, { textContent: hasPlus ? '+ 0' : '0' }, {
+        textContent: number, duration: 2.5, ease: 'power2.out', snap: { textContent: 1 },
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+        onUpdate: function() {
+            const current = Math.round(this.targets()[0].textContent);
+            el.textContent = hasPlus ? `+ ${current}${hasM ? 'M' : ''}` : `${current}${hasM ? 'M' : ''}`;
+        }
+    });
+});
+
+const testimonialsSwiper = new Swiper('.testimonials-swiper', {
+    slidesPerView: 1, spaceBetween: 30,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: { 768: { slidesPerView: 2 }, 1200: { slidesPerView: 3 } },
+    autoplay: { delay: 5000, disableOnInteraction: false }
+});
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active'); mobileMenu.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active'); mobileMenu.classList.remove('active'); document.body.style.overflow = '';
+    });
+});
+</script>
+
+</body>
+</html>
