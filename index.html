@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First In Formation | Créez votre Conciergerie de Luxe</title>
+    <title>First In Formation | Créez votre Empire dans la Conciergerie de Luxe</title>
     <link rel="icon" type="image/png" href="./assets/images/LOGO-FIRST_CONCIERGERIEpng-05.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
         :root {
             --white: #ffffff;
-            --cream: #faf9f7;
-            --cream-dark: #f2efe9;
-            --black: #1a1a1a;
-            --black-soft: #2d2d2d;
+            --off-white: #f8f7f4;
+            --cream: #f3f1ec;
+            --black: #0d0d0d;
+            --black-soft: #1a1a1a;
             --gray: #6b6b6b;
-            --gray-light: #a3a3a3;
+            --green-deep: #14332a;
             --green: #1a4d3e;
-            --green-light: #247d64;
-            --green-accent: #2d9474;
+            --green-accent: #2d8b6f;
         }
 
         * {
@@ -34,12 +33,10 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--cream);
+            font-family: 'Outfit', sans-serif;
+            background: var(--off-white);
             color: var(--black);
             overflow-x: hidden;
-            font-weight: 400;
-            line-height: 1.6;
         }
 
         ::selection {
@@ -47,536 +44,742 @@
             color: var(--white);
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 60px;
-        }
-
         /* ════════════════════════════════════════════════════════════
-           NAVIGATION
-           ════════════════════════════════════════════════════════════ */
+           NAVIGATION - FLOATING GLASS
+        ════════════════════════════════════════════════════════════ */
         .nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1000;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.4s ease;
-        }
-
-        .nav.scrolled {
-            background: rgba(250, 249, 247, 0.95);
+            background: rgba(255,255,255,0.85);
             backdrop-filter: blur(20px);
-            box-shadow: 0 1px 30px rgba(0,0,0,0.05);
-        }
-
-        .nav-logo img {
-            height: 45px;
-        }
-
-        .nav-menu {
+            border-radius: 100px;
+            padding: 15px 40px;
             display: flex;
             align-items: center;
             gap: 50px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .nav-logo img {
+            height: 35px;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 35px;
         }
 
         .nav-links a {
             font-size: 14px;
             font-weight: 500;
             color: var(--black);
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            opacity: 1;
+            color: var(--green);
         }
 
         .nav-cta {
+            background: var(--green-deep);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
             font-size: 13px;
             font-weight: 600;
-            color: var(--white);
-            background: var(--green);
-            padding: 14px 28px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .nav-cta:hover {
-            background: var(--green-light);
-            transform: translateY(-2px);
+            background: var(--green);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(26,77,62,0.3);
         }
 
         /* ════════════════════════════════════════════════════════════
-           HERO - HOOK EN 3 SECONDES
-           ════════════════════════════════════════════════════════════ */
+           HERO - FULL IMMERSION
+        ════════════════════════════════════════════════════════════ */
         .hero {
             min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            background: var(--cream);
             position: relative;
+            display: flex;
+            align-items: center;
             overflow: hidden;
         }
 
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                rgba(248,247,244,0.97) 0%,
+                rgba(248,247,244,0.85) 40%,
+                rgba(248,247,244,0.4) 70%,
+                rgba(248,247,244,0.1) 100%
+            );
+        }
+
         .hero-content {
-            padding: 150px 80px 100px 80px;
-            max-width: 700px;
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
+            padding-top: 120px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-left {
+            max-width: 650px;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--green);
-            background: rgba(26, 77, 62, 0.08);
+            gap: 10px;
+            background: linear-gradient(135deg, var(--green-deep), var(--green));
+            color: white;
             padding: 10px 20px;
             border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
             margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(20,51,42,0.3);
         }
 
         .hero-badge::before {
             content: '';
             width: 8px;
             height: 8px;
-            background: var(--green-accent);
+            background: #4ade80;
             border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
+            animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
 
         .hero-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(48px, 5.5vw, 72px);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 6vw, 72px);
             font-weight: 500;
             line-height: 1.1;
-            color: var(--black);
             margin-bottom: 25px;
+            color: var(--black);
         }
 
-        .hero-title em {
-            font-style: italic;
+        .hero-title span {
+            display: block;
+        }
+
+        .hero-title .highlight {
             color: var(--green);
+            font-style: italic;
         }
 
         .hero-subtitle {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--green);
-            margin-bottom: 15px;
-        }
-
-        .hero-desc {
-            font-size: 16px;
+            font-size: 20px;
+            line-height: 1.7;
             color: var(--gray);
-            line-height: 1.8;
             margin-bottom: 40px;
-            max-width: 450px;
+            max-width: 500px;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            font-size: 14px;
+        .hero-subtitle strong {
+            color: var(--black);
             font-weight: 600;
-            padding: 18px 35px;
-            border-radius: 50px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .btn-hero {
             display: inline-flex;
             align-items: center;
             gap: 12px;
+            padding: 20px 40px;
+            border-radius: 60px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .btn-primary {
+        .btn-hero-primary {
+            background: var(--green-deep);
+            color: white;
+            box-shadow: 0 20px 50px rgba(20,51,42,0.25);
+        }
+
+        .btn-hero-primary:hover {
             background: var(--green);
-            color: var(--white);
+            transform: translateY(-4px);
+            box-shadow: 0 30px 60px rgba(20,51,42,0.35);
         }
 
-        .btn-primary:hover {
-            background: var(--green-light);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(26, 77, 62, 0.25);
+        .btn-hero-primary svg {
+            transition: transform 0.3s;
         }
 
-        .btn-secondary {
-            background: var(--white);
+        .btn-hero-primary:hover svg {
+            transform: translateX(5px);
+        }
+
+        .btn-hero-secondary {
             color: var(--black);
-            border: 1px solid rgba(0,0,0,0.1);
+            border: 2px solid rgba(0,0,0,0.1);
+            background: white;
         }
 
-        .btn-secondary:hover {
+        .btn-hero-secondary:hover {
             border-color: var(--green);
             color: var(--green);
         }
 
-        .btn svg {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.3s ease;
+        .hero-proof {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .btn:hover svg {
-            transform: translateX(4px);
+        .hero-avatars {
+            display: flex;
         }
 
-        .hero-visual {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .hero-visual img {
-            width: 100%;
-            height: 100%;
+        .hero-avatars img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-left: -12px;
             object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .hero-visual::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, var(--cream) 0%, transparent 30%);
-            z-index: 1;
+        .hero-avatars img:first-child {
+            margin-left: 0;
         }
 
-        .hero-floating-card {
+        .hero-proof-text {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .hero-proof-text strong {
+            display: block;
+            font-size: 16px;
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .hero-visual-card {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.15);
+        }
+
+        .hero-visual-card img {
+            width: 100%;
+            display: block;
+        }
+
+        .hero-floating-stat {
             position: absolute;
-            bottom: 100px;
-            left: -60px;
-            background: var(--white);
-            padding: 30px;
+            background: white;
+            padding: 25px 30px;
             border-radius: 20px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            z-index: 2;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+            animation: float 6s ease-in-out infinite;
         }
 
-        .hero-floating-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 48px;
+        .hero-floating-stat.stat-1 {
+            bottom: -30px;
+            left: -30px;
+            animation-delay: 0s;
+        }
+
+        .hero-floating-stat.stat-2 {
+            top: 20%;
+            right: -40px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
             font-weight: 600;
             color: var(--green);
         }
 
-        .hero-floating-label {
-            font-size: 14px;
+        .stat-label {
+            font-size: 13px;
             color: var(--gray);
+            margin-top: 5px;
         }
 
         /* ════════════════════════════════════════════════════════════
-           TRUST BAR - PARTENAIRES
-           ════════════════════════════════════════════════════════════ */
-        .trust {
-            padding: 60px 0;
-            background: var(--white);
-            border-top: 1px solid rgba(0,0,0,0.05);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+           LIFESTYLE MARQUEE - MOVEMENT
+        ════════════════════════════════════════════════════════════ */
+        .marquee-section {
+            padding: 30px 0;
+            background: var(--green-deep);
+            overflow: hidden;
         }
 
-        .trust-inner {
+        .marquee {
+            display: flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 80px;
-            flex-wrap: wrap;
-        }
-
-        .trust-label {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gray-light);
-        }
-
-        .trust-items {
-            display: flex;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            gap: 15px;
+            padding: 0 50px;
+            white-space: nowrap;
+            color: rgba(255,255,255,0.7);
             font-size: 14px;
             font-weight: 500;
-            color: var(--gray);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
-        .trust-item svg {
-            width: 20px;
-            height: 20px;
+        .marquee-item::before {
+            content: '◆';
             color: var(--green-accent);
         }
 
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* ════════════════════════════════════════════════════════════
-           SECTION FONDATEUR - STORYTELLING
-           ════════════════════════════════════════════════════════════ */
+           VISION SECTION - LIFESTYLE IMMERSION
+        ════════════════════════════════════════════════════════════ */
+        .vision {
+            padding: 150px 0;
+            background: var(--off-white);
+        }
+
+        .vision-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
+        }
+
+        .vision-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 20px;
+            padding: 10px 25px;
+            background: rgba(45,139,111,0.1);
+            border-radius: 50px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .vision-card {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            group: true;
+        }
+
+        .vision-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .vision-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .vision-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                transparent 40%,
+                rgba(13,13,13,0.9) 100%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            transition: all 0.4s;
+        }
+
+        .vision-card:hover .vision-card-overlay {
+            background: linear-gradient(180deg,
+                transparent 20%,
+                rgba(20,51,42,0.95) 100%
+            );
+        }
+
+        .vision-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .vision-card-text {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+        .vision-card:hover .vision-card-text {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ════════════════════════════════════════════════════════════
+           FOUNDER - STORY SECTION
+        ════════════════════════════════════════════════════════════ */
         .founder {
             padding: 150px 0;
             background: var(--cream);
+            position: relative;
+            overflow: hidden;
         }
 
-        .founder-grid {
+        .founder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(45,139,111,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .founder-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 100px;
             align-items: center;
         }
 
-        .founder-image {
+        .founder-image-wrapper {
             position: relative;
         }
 
-        .founder-image-main {
+        .founder-image {
+            position: relative;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.12);
         }
 
-        .founder-image-main img {
+        .founder-image img {
             width: 100%;
-            height: 600px;
-            object-fit: cover;
+            display: block;
         }
 
-        .founder-badge {
+        .founder-image::after {
+            content: '';
             position: absolute;
-            top: 30px;
-            right: -30px;
-            background: var(--green);
-            color: var(--white);
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(26, 77, 62, 0.3);
+            inset: 0;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .founder-badge-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 36px;
-            font-weight: 600;
-        }
-
-        .founder-badge-label {
-            font-size: 12px;
-            opacity: 0.8;
+        .founder-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--green-accent);
+            border-radius: 30px;
+            top: -30px;
+            left: -30px;
+            z-index: -1;
+            opacity: 0.5;
         }
 
         .founder-content {
-            padding: 20px 0;
-        }
-
-        .section-eyebrow {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(36px, 4vw, 52px);
-            font-weight: 500;
-            line-height: 1.2;
-            margin-bottom: 25px;
-        }
-
-        .section-title em {
-            font-style: italic;
-        }
-
-        .section-text {
-            font-size: 16px;
-            color: var(--gray);
-            line-height: 1.9;
-            margin-bottom: 20px;
+            position: relative;
         }
 
         .founder-quote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
             font-style: italic;
-            line-height: 1.6;
+            line-height: 1.5;
+            color: var(--green-deep);
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 30px;
+            border-left: 3px solid var(--green-accent);
+        }
+
+        .founder-text {
+            font-size: 17px;
+            line-height: 1.9;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .founder-text strong {
             color: var(--black);
-            padding: 30px;
-            background: var(--white);
-            border-left: 4px solid var(--green);
-            border-radius: 0 16px 16px 0;
-            margin: 35px 0;
         }
 
         .founder-signature {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-top: 30px;
+            gap: 20px;
         }
 
-        .founder-signature img {
-            width: 50px;
-            height: 50px;
+        .founder-signature-avatar {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
+            border: 3px solid var(--green-accent);
         }
 
         .founder-signature-name {
-            font-weight: 600;
-            margin-bottom: 2px;
+            font-weight: 700;
+            font-size: 18px;
         }
 
-        .founder-signature-role {
-            font-size: 13px;
+        .founder-signature-title {
+            font-size: 14px;
             color: var(--gray);
         }
 
         /* ════════════════════════════════════════════════════════════
-           SECTION IMMERSION - FULL VISUAL
-           ════════════════════════════════════════════════════════════ */
-        .immersion {
-            height: 80vh;
+           STATS - IMPACT NUMBERS
+        ════════════════════════════════════════════════════════════ */
+        .stats {
+            padding: 100px 0;
+            background: var(--green-deep);
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
         }
 
-        .immersion-bg {
+        .stats::before {
+            content: '';
             position: absolute;
             inset: 0;
+            background: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920') center/cover;
+            opacity: 0.1;
         }
 
-        .immersion-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .immersion-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(26, 77, 62, 0.85) 0%, rgba(26, 26, 26, 0.7) 100%);
-        }
-
-        .immersion-content {
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 80px;
             position: relative;
-            z-index: 2;
-            text-align: center;
-            color: var(--white);
-            max-width: 800px;
-            padding: 0 30px;
-        }
-
-        .immersion-eyebrow {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            opacity: 0.7;
-            margin-bottom: 20px;
-        }
-
-        .immersion-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 500;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .immersion-subtitle {
-            font-size: 20px;
-            opacity: 0.9;
-            margin-bottom: 40px;
-        }
-
-        .immersion .btn-primary {
-            background: var(--white);
-            color: var(--green);
-        }
-
-        .immersion .btn-primary:hover {
-            background: var(--cream);
-        }
-
-        /* ════════════════════════════════════════════════════════════
-           SECTION STATS
-           ════════════════════════════════════════════════════════════ */
-        .stats {
-            padding: 120px 0;
-            background: var(--white);
+            z-index: 1;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-        }
-
-        .stat-card {
+            gap: 60px;
             text-align: center;
-            padding: 50px 30px;
-            background: var(--cream);
-            border-radius: 24px;
-            transition: all 0.4s ease;
         }
 
-        .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        .stat-item {
+            color: white;
         }
 
-        .stat-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 56px;
-            font-weight: 600;
-            color: var(--green);
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--gray);
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
             font-weight: 500;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, white, rgba(255,255,255,0.7));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-text {
+            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         /* ════════════════════════════════════════════════════════════
-           SECTION TESTIMONIALS
-           ════════════════════════════════════════════════════════════ */
+           PROGRAMME - WHAT YOU GET
+        ════════════════════════════════════════════════════════════ */
+        .programme {
+            padding: 150px 0;
+            background: var(--off-white);
+        }
+
+        .programme-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
+        }
+
+        .programme-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: end;
+            margin-bottom: 80px;
+        }
+
+        .programme-header-left .section-title {
+            margin-bottom: 0;
+        }
+
+        .programme-header-right {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .programme-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .programme-card {
+            background: white;
+            border-radius: 25px;
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .programme-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+        }
+
+        .programme-card-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            font-weight: 500;
+            color: rgba(45,139,111,0.1);
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .programme-card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--green-deep), var(--green));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .programme-card-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .programme-card-text {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ════════════════════════════════════════════════════════════
+           TESTIMONIALS - SOCIAL PROOF
+        ════════════════════════════════════════════════════════════ */
         .testimonials {
             padding: 150px 0;
             background: var(--cream);
+            overflow: hidden;
+        }
+
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
         }
 
         .testimonials-header {
@@ -584,44 +787,49 @@
             margin-bottom: 80px;
         }
 
-        .testimonials-grid {
+        .testimonial-main {
+            background: white;
+            border-radius: 40px;
+            padding: 80px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            align-items: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
         }
 
-        .testimonial-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 40px;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(0,0,0,0.05);
+        .testimonial-image {
+            position: relative;
         }
 
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            border-color: transparent;
+        .testimonial-image img {
+            width: 100%;
+            border-radius: 25px;
+            object-fit: cover;
+            aspect-ratio: 1;
         }
 
         .testimonial-badge {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--green);
-            background: rgba(26, 77, 62, 0.08);
-            padding: 6px 14px;
-            border-radius: 50px;
-            margin-bottom: 20px;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--green);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 15px 40px rgba(45,139,111,0.3);
         }
 
-        .testimonial-text {
-            font-size: 16px;
-            line-height: 1.8;
+        .testimonial-content blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 40px;
             color: var(--black);
-            margin-bottom: 30px;
         }
 
         .testimonial-author {
@@ -630,32 +838,29 @@
             gap: 15px;
         }
 
-        .testimonial-author img {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
         .testimonial-author-name {
-            font-weight: 600;
-            margin-bottom: 2px;
+            font-weight: 700;
+            font-size: 18px;
         }
 
-        .testimonial-author-result {
-            font-size: 13px;
-            color: var(--green);
-            font-weight: 600;
+        .testimonial-author-role {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 5px;
+            color: #f59e0b;
+            margin-bottom: 20px;
         }
 
         /* ════════════════════════════════════════════════════════════
-           CTA FINAL
-           ════════════════════════════════════════════════════════════ */
+           FINAL CTA - CONVERSION
+        ════════════════════════════════════════════════════════════ */
         .cta-final {
             padding: 150px 0;
-            background: var(--green);
-            color: var(--white);
-            text-align: center;
+            background: linear-gradient(135deg, var(--green-deep) 0%, #0d261f 100%);
             position: relative;
             overflow: hidden;
         }
@@ -663,546 +868,700 @@
         .cta-final::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 50%;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1920') center/cover;
+            opacity: 0.15;
         }
 
-        .cta-final::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 50%;
-        }
-
-        .cta-final-content {
+        .cta-final-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 80px;
+            text-align: center;
             position: relative;
             z-index: 1;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .cta-final-eyebrow {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            opacity: 0.7;
-            margin-bottom: 20px;
         }
 
         .cta-final-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(40px, 5vw, 64px);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 5vw, 60px);
             font-weight: 500;
-            line-height: 1.15;
-            margin-bottom: 25px;
+            color: white;
+            margin-bottom: 30px;
+            line-height: 1.2;
         }
 
-        .cta-final-desc {
-            font-size: 18px;
-            opacity: 0.85;
-            margin-bottom: 45px;
+        .cta-final-title span {
+            color: var(--green-accent);
+            font-style: italic;
+        }
+
+        .cta-final-text {
+            font-size: 20px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
             line-height: 1.7;
         }
 
-        .cta-final .btn-primary {
-            background: var(--white);
-            color: var(--green);
-            font-size: 15px;
-            padding: 20px 45px;
+        .cta-final-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            color: var(--green-deep);
+            padding: 25px 50px;
+            border-radius: 60px;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
-        .cta-final .btn-primary:hover {
-            background: var(--cream);
-            transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        .cta-final-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+        }
+
+        .cta-final-btn svg {
+            transition: transform 0.3s;
+        }
+
+        .cta-final-btn:hover svg {
+            transform: translateX(5px);
+        }
+
+        .cta-guarantee {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .cta-guarantee svg {
+            color: var(--green-accent);
         }
 
         /* ════════════════════════════════════════════════════════════
            FOOTER
-           ════════════════════════════════════════════════════════════ */
+        ════════════════════════════════════════════════════════════ */
         .footer {
-            padding: 60px 0;
             background: var(--black);
-            color: var(--white);
+            color: white;
+            padding: 80px 0 40px;
         }
 
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
         }
 
-        .footer-logo img {
-            height: 40px;
-            opacity: 0.8;
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-top: 20px;
+            max-width: 300px;
+        }
+
+        .footer-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 25px;
         }
 
         .footer-links {
-            display: flex;
-            gap: 40px;
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
         }
 
         .footer-links a {
-            font-size: 14px;
             color: rgba(255,255,255,0.6);
-            transition: color 0.3s ease;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
         }
 
         .footer-links a:hover {
-            color: var(--white);
+            color: var(--green-accent);
         }
 
-        .footer-copy {
-            font-size: 13px;
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            font-size: 14px;
             color: rgba(255,255,255,0.4);
         }
 
         /* ════════════════════════════════════════════════════════════
-           WHATSAPP
-           ════════════════════════════════════════════════════════════ */
-        .whatsapp {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-        }
-
-        .whatsapp:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-
-        /* ════════════════════════════════════════════════════════════
-           ANIMATIONS
-           ════════════════════════════════════════════════════════════ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-40px);
-        }
-
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(40px);
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        /* ════════════════════════════════════════════════════════════
-           MOBILE RESPONSIVE
-           ════════════════════════════════════════════════════════════ */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .mobile-menu-btn span {
-            width: 24px;
-            height: 2px;
-            background: var(--black);
-            transition: all 0.3s ease;
-        }
-
-        @media (max-width: 1200px) {
-            .container { padding: 0 40px; }
-            .hero { grid-template-columns: 1fr; }
-            .hero-content { padding: 150px 60px 80px; max-width: 100%; }
-            .hero-visual { height: 60vh; }
-            .hero-visual::before { background: linear-gradient(0deg, var(--cream) 0%, transparent 50%); }
-            .hero-floating-card { bottom: 50px; left: 30px; }
-
-            .founder-grid { grid-template-columns: 1fr; gap: 60px; }
-            .founder-image { order: -1; }
-            .founder-badge { right: 30px; }
-        }
-
+           RESPONSIVE
+        ════════════════════════════════════════════════════════════ */
         @media (max-width: 1024px) {
-            .nav { padding: 20px 30px; }
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: flex; }
+            .nav {
+                padding: 12px 25px;
+                gap: 30px;
+            }
 
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .testimonials-grid { grid-template-columns: 1fr; }
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                padding: 150px 40px 80px;
+            }
+
+            .hero-right {
+                display: none;
+            }
+
+            .vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                padding: 0 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .programme-header {
+                grid-template-columns: 1fr;
+            }
+
+            .programme-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-main {
+                grid-template-columns: 1fr;
+                padding: 40px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 768px) {
-            .container { padding: 0 25px; }
-            .hero-content { padding: 120px 25px 60px; }
-            .hero-title { font-size: 38px; }
-            .hero-buttons { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
+            .nav {
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                transform: none;
+            }
 
-            .founder { padding: 100px 0; }
-            .founder-image-main img { height: 400px; }
+            .hero-title {
+                font-size: 36px;
+            }
 
-            .stats { padding: 80px 0; }
-            .stats-grid { grid-template-columns: 1fr; gap: 20px; }
-            .stat-card { padding: 35px 25px; }
-            .stat-number { font-size: 42px; }
+            .section-title {
+                font-size: 32px;
+            }
 
-            .testimonials { padding: 100px 0; }
-            .testimonial-card { padding: 30px; }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
 
-            .cta-final { padding: 100px 0; }
-            .cta-final-title { font-size: 32px; }
+            .stat-value {
+                font-size: 48px;
+            }
 
-            .footer-inner { flex-direction: column; gap: 30px; text-align: center; }
-            .footer-links { flex-wrap: wrap; justify-content: center; gap: 25px; }
+            .cta-final-container {
+                padding: 0 30px;
+            }
 
-            .whatsapp { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav class="nav" id="nav">
-    <a href="index.html" class="nav-logo">
-        <img src="./assets/images/Logo Conciergerie (1).png" alt="First In Formation">
-    </a>
-    <div class="nav-menu">
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <img src="./assets/images/Logo Conciergerie (2).png" alt="First In Formation">
+        </a>
         <div class="nav-links">
-            <a href="index.html">Accueil</a>
-            <a href="presentation.html">Présentation</a>
-            <a href="a-propos.html">À propos</a>
-            <a href="vos-reussites.html">Vos réussites</a>
+            <a href="presentation.html">Programme</a>
+            <a href="a-propos.html">Notre Vision</a>
+            <a href="vos-reussites.html">Success Stories</a>
         </div>
-        <a href="https://wa.me/33744934330" class="nav-cta">Contactez-nous</a>
-    </div>
-    <div class="mobile-menu-btn">
-        <span></span><span></span><span></span>
-    </div>
-</nav>
+        <a href="#contact" class="nav-cta">Rejoindre</a>
+    </nav>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-badge reveal">
-            Présentation offerte
+    <!-- HERO - FULL IMMERSION -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=85" alt="Dubai Skyline">
         </div>
-        <h1 class="hero-title reveal">
-            Créez votre propre <em>Conciergerie</em>
-        </h1>
-        <p class="hero-subtitle reveal">Générez 10 000€/mois en 90 jours</p>
-        <p class="hero-desc reveal">
-            Devenez un véritable expert du sur-mesure grâce à notre formation intensive et notre réseau de +220 partenaires internationaux.
-        </p>
-        <div class="hero-buttons">
-            <a href="https://wa.me/33744934330" class="btn btn-primary reveal">
-                Réserver ma présentation gratuite
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-            <a href="#founder" class="btn btn-secondary reveal">Découvrir l'histoire</a>
-        </div>
-    </div>
 
-    <div class="hero-visual">
-        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80" alt="Dubai Lifestyle">
-        <div class="hero-floating-card reveal-left">
-            <div class="hero-floating-number">+450</div>
-            <div class="hero-floating-label">Élèves formés</div>
-        </div>
-    </div>
-</section>
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    Places limitées — Session 2025
+                </div>
 
-<!-- TRUST BAR -->
-<section class="trust">
-    <div class="container">
-        <div class="trust-inner">
-            <span class="trust-label">Ils nous font confiance</span>
-            <div class="trust-items">
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    Formation certifiante
+                <h1 class="hero-title">
+                    <span>Créez votre</span>
+                    <span class="highlight">Empire</span>
+                    <span>dans la Conciergerie de Luxe</span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Rejoignez les <strong>200+ entrepreneurs</strong> qui ont transformé leur passion
+                    pour le luxe en business rentable. <strong>Revenus moyens : 8 500€/mois</strong>
+                    après 6 mois.
+                </p>
+
+                <div class="hero-cta-group">
+                    <a href="#programme" class="btn-hero btn-hero-primary">
+                        Découvrir le Programme
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="#vision" class="btn-hero btn-hero-secondary">
+                        Voir les témoignages
+                    </a>
                 </div>
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    Réseau international
+
+                <div class="hero-proof">
+                    <div class="hero-avatars">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="">
+                    </div>
+                    <div class="hero-proof-text">
+                        <strong>+200 élèves formés</strong>
+                        4.9/5 satisfaction moyenne
+                    </div>
                 </div>
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Accompagnement 24/7
-                </div>
-                <div class="trust-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    4.9/5 satisfaction
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-visual-card">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=85" alt="Luxury Lifestyle">
+
+                    <div class="hero-floating-stat stat-1">
+                        <div class="stat-number">8,5K€</div>
+                        <div class="stat-label">Revenu moyen / mois</div>
+                    </div>
+
+                    <div class="hero-floating-stat stat-2">
+                        <div class="stat-number">94%</div>
+                        <div class="stat-label">Taux de réussite</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- FONDATEUR - STORYTELLING -->
-<section class="founder" id="founder">
-    <div class="container">
-        <div class="founder-grid">
-            <div class="founder-image reveal-left">
-                <div class="founder-image-main">
-                    <img src="./assets/images/image.png" alt="Yacine - Fondateur">
+    <!-- MARQUEE - MOVEMENT -->
+    <div class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-item">Conciergerie de Luxe</div>
+            <div class="marquee-item">Lifestyle Premium</div>
+            <div class="marquee-item">Liberté Financière</div>
+            <div class="marquee-item">Réseau d'Élite</div>
+            <div class="marquee-item">Accompagnement VIP</div>
+            <div class="marquee-item">Dubaï Mindset</div>
+            <div class="marquee-item">Conciergerie de Luxe</div>
+            <div class="marquee-item">Lifestyle Premium</div>
+            <div class="marquee-item">Liberté Financière</div>
+            <div class="marquee-item">Réseau d'Élite</div>
+            <div class="marquee-item">Accompagnement VIP</div>
+            <div class="marquee-item">Dubaï Mindset</div>
+        </div>
+    </div>
+
+    <!-- VISION - LIFESTYLE IMMERSION -->
+    <section class="vision" id="vision">
+        <div class="vision-container">
+            <div class="vision-header">
+                <span class="section-tag">La Vision</span>
+                <h2 class="section-title">Un Lifestyle, Pas Juste un Business</h2>
+                <p class="section-subtitle">
+                    La conciergerie de luxe, c'est bien plus qu'un métier.
+                    C'est un mode de vie où chaque jour vous côtoyez l'excellence.
+                </p>
+            </div>
+
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=85" alt="Luxury Real Estate">
+                    <div class="vision-card-overlay">
+                        <h3 class="vision-card-title">Immobilier de Prestige</h3>
+                        <p class="vision-card-text">Accédez aux propriétés les plus exclusives et développez un réseau premium.</p>
+                    </div>
                 </div>
-                <div class="founder-badge">
-                    <div class="founder-badge-number">+6</div>
-                    <div class="founder-badge-label">ans à Dubaï</div>
+
+                <div class="vision-card">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=85" alt="Luxury Cars">
+                    <div class="vision-card-overlay">
+                        <h3 class="vision-card-title">Expériences Uniques</h3>
+                        <p class="vision-card-text">Yachts, jets privés, événements VIP — offrez l'extraordinaire à vos clients.</p>
+                    </div>
+                </div>
+
+                <div class="vision-card">
+                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=600&q=85" alt="Luxury Travel">
+                    <div class="vision-card-overlay">
+                        <h3 class="vision-card-title">Liberté Totale</h3>
+                        <p class="vision-card-text">Travaillez de n'importe où, gérez votre emploi du temps, vivez à votre rythme.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDER - STORYTELLING -->
+    <section class="founder">
+        <div class="founder-container">
+            <div class="founder-image-wrapper">
+                <div class="founder-decoration"></div>
+                <div class="founder-image">
+                    <img src="./assets/images/image.png" alt="Yacine - Fondateur">
                 </div>
             </div>
 
             <div class="founder-content">
-                <p class="section-eyebrow reveal">Le fondateur</p>
-                <h2 class="section-title reveal">
-                    Bonjour, moi c'est <em>Yacine</em>
-                </h2>
-                <p class="section-text reveal">
-                    Fondateur de First In Conciergerie. Présent à Dubaï depuis plus de six ans, j'ai développé une expertise pointue et un réseau international de plus de 220 partenaires de confiance.
-                </p>
-                <p class="section-text reveal">
-                    Aujourd'hui, je transmets tout ce que j'ai appris pour vous permettre de créer votre propre conciergerie rentable.
-                </p>
+                <span class="section-tag">Le Fondateur</span>
 
-                <blockquote class="founder-quote reveal">
-                    "Je n'ai jamais fait partie de ceux qui attendent que les opportunités leur tombent dessus. Je les crée."
+                <blockquote class="founder-quote">
+                    "J'ai commencé avec 0€ et une connexion internet. Aujourd'hui,
+                    j'accompagne des entrepreneurs à atteindre leur liberté financière."
                 </blockquote>
 
-                <div class="founder-signature reveal">
-                    <img src="./assets/images/image.png" alt="Yacine">
+                <p class="founder-text">
+                    Il y a 5 ans, j'étais exactement à votre place. Aujourd'hui, après avoir
+                    construit <strong>plusieurs conciergeries rentables</strong> et accompagné
+                    <strong>+200 élèves</strong> vers leur indépendance, je partage avec vous
+                    la méthode exacte qui fonctionne.
+                    <br><br>
+                    Pas de théorie inutile. <strong>Que du concret, testé et approuvé.</strong>
+                </p>
+
+                <div class="founder-signature">
+                    <img src="./assets/images/image.png" alt="Yacine" class="founder-signature-avatar">
                     <div>
-                        <p class="founder-signature-name">Yacine</p>
-                        <p class="founder-signature-role">Fondateur, First In Formation</p>
+                        <div class="founder-signature-name">Yacine</div>
+                        <div class="founder-signature-title">Fondateur de First In Formation</div>
                     </div>
                 </div>
-
-                <a href="a-propos.html" class="btn btn-secondary reveal" style="margin-top: 35px;">
-                    Découvrir mon histoire
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- IMMERSION VISUELLE -->
-<section class="immersion">
-    <div class="immersion-bg">
-        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80" alt="Luxury Villa">
-    </div>
-    <div class="immersion-overlay"></div>
-    <div class="immersion-content">
-        <p class="immersion-eyebrow reveal">Liberté financière</p>
-        <h2 class="immersion-title reveal">
-            Comment générer minimum<br>10 000€/mois ?
-        </h2>
-        <p class="immersion-subtitle reveal">Rejoignez First Formation et transformez votre vie</p>
-        <a href="presentation.html" class="btn btn-primary reveal">
-            Rejoindre First Formation
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-    </div>
-</section>
-
-<!-- STATS -->
-<section class="stats">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-card reveal">
-                <div class="stat-number">+450</div>
-                <div class="stat-label">Élèves inscrits</div>
-            </div>
-            <div class="stat-card reveal">
-                <div class="stat-number">+6M€</div>
-                <div class="stat-label">Générés par nos élèves</div>
-            </div>
-            <div class="stat-card reveal">
-                <div class="stat-number">+220</div>
-                <div class="stat-label">Partenaires mondiaux</div>
-            </div>
-            <div class="stat-card reveal">
-                <div class="stat-number">+6</div>
-                <div class="stat-label">Pays représentés</div>
+    <!-- STATS - IMPACT -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">200+</div>
+                    <div class="stat-text">Élèves Formés</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">8,5K€</div>
+                    <div class="stat-text">Revenu Moyen</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">94%</div>
+                    <div class="stat-text">Taux de Réussite</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">4.9/5</div>
+                    <div class="stat-text">Satisfaction</div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-    <div class="container">
-        <div class="testimonials-header">
-            <p class="section-eyebrow reveal">Leurs retours</p>
-            <h2 class="section-title reveal">
-                Ils ont transformé <em>leur vie</em>
+    <!-- PROGRAMME -->
+    <section class="programme" id="programme">
+        <div class="programme-container">
+            <div class="programme-header">
+                <div class="programme-header-left">
+                    <span class="section-tag">Le Programme</span>
+                    <h2 class="section-title">Tout Ce Dont Vous Avez Besoin Pour Réussir</h2>
+                </div>
+                <div class="programme-header-right">
+                    Un accompagnement complet, de A à Z, pour lancer et développer
+                    votre conciergerie de luxe en moins de 90 jours.
+                </div>
+            </div>
+
+            <div class="programme-cards">
+                <div class="programme-card">
+                    <div class="programme-card-number">01</div>
+                    <div class="programme-card-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3 class="programme-card-title">Stratégie & Positionnement</h3>
+                    <p class="programme-card-text">
+                        Définissez votre offre premium, trouvez votre niche et positionnez-vous
+                        comme LA référence de votre marché.
+                    </p>
+                </div>
+
+                <div class="programme-card">
+                    <div class="programme-card-number">02</div>
+                    <div class="programme-card-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="programme-card-title">Acquisition Clients</h3>
+                    <p class="programme-card-text">
+                        Les techniques exactes pour attirer des clients haut de gamme
+                        prêts à payer le prix fort pour vos services.
+                    </p>
+                </div>
+
+                <div class="programme-card">
+                    <div class="programme-card-number">03</div>
+                    <div class="programme-card-icon">
+                        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        </svg>
+                    </div>
+                    <h3 class="programme-card-title">Scaling & Automatisation</h3>
+                    <p class="programme-card-text">
+                        Systématisez votre business pour générer des revenus
+                        même quand vous ne travaillez pas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <div class="testimonials-header">
+                <span class="section-tag">Témoignages</span>
+                <h2 class="section-title">Ils Ont Transformé Leur Vie</h2>
+            </div>
+
+            <div class="testimonial-main">
+                <div class="testimonial-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop" alt="Thomas">
+                    <div class="testimonial-badge">+12K€/mois</div>
+                </div>
+
+                <div class="testimonial-content">
+                    <div class="testimonial-stars">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+
+                    <blockquote>
+                        "En 4 mois, je suis passé de salarié frustré à entrepreneur libre.
+                        La méthode de Yacine est claire, actionnable et surtout... elle fonctionne.
+                        Aujourd'hui je fais 12K€/mois en travaillant de Bali."
+                    </blockquote>
+
+                    <div class="testimonial-author">
+                        <div>
+                            <div class="testimonial-author-name">Thomas R.</div>
+                            <div class="testimonial-author-role">Ancien cadre, maintenant entrepreneur libre</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-final" id="contact">
+        <div class="cta-final-container">
+            <h2 class="cta-final-title">
+                Prêt à Créer<br><span>Votre Empire ?</span>
             </h2>
-        </div>
-
-        <div class="testimonials-grid">
-            <div class="testimonial-card reveal">
-                <span class="testimonial-badge">Avis</span>
-                <p class="testimonial-text">
-                    "En 4 mois, j'ai complètement changé de vie. Je génère maintenant 4 500€/mois avec ma propre conciergerie."
-                </p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sophia">
-                    <div>
-                        <p class="testimonial-author-name">Sophia M.</p>
-                        <p class="testimonial-author-result">+4 500€/mois</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card reveal">
-                <span class="testimonial-badge">Avis</span>
-                <p class="testimonial-text">
-                    "Le réseau de partenaires est incroyable. J'ai signé mon premier client à 15K€ grâce aux contacts de Yacine."
-                </p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Karim">
-                    <div>
-                        <p class="testimonial-author-name">Karim B.</p>
-                        <p class="testimonial-author-result">Premier client 15K€</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card reveal">
-                <span class="testimonial-badge">Avis</span>
-                <p class="testimonial-text">
-                    "L'accompagnement est exceptionnel. Yacine répond toujours présent, même le dimanche soir."
-                </p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Lea">
-                    <div>
-                        <p class="testimonial-author-name">Lea D.</p>
-                        <p class="testimonial-author-result">+8 000€/mois</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA FINAL -->
-<section class="cta-final">
-    <div class="container">
-        <div class="cta-final-content">
-            <p class="cta-final-eyebrow reveal">Rejoignez-nous</p>
-            <h2 class="cta-final-title reveal">
-                Entrez dans le cercle des conciergeries d'élite
-            </h2>
-            <p class="cta-final-desc reveal">
-                Rejoignez +450 élèves qui ont transformé leur vie grâce à First In Formation.
+            <p class="cta-final-text">
+                Rejoignez la prochaine session et commencez votre transformation.
+                Places limitées pour garantir un accompagnement personnalisé.
             </p>
-            <a href="https://wa.me/33744934330" class="btn btn-primary reveal">
-                Rejoindre First Formation
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <a href="#" class="cta-final-btn">
+                Réserver Ma Place
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
             </a>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-inner">
-            <a href="index.html" class="footer-logo">
-                <img src="./assets/images/Logo Conciergerie (1).png" alt="First In">
-            </a>
-            <div class="footer-links">
-                <a href="index.html">Accueil</a>
-                <a href="presentation.html">Présentation</a>
-                <a href="a-propos.html">À propos</a>
-                <a href="vos-reussites.html">Vos réussites</a>
+            <div class="cta-guarantee">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                Garantie satisfait ou remboursé 30 jours
             </div>
-            <p class="footer-copy">© 2024 First In Formation</p>
         </div>
-    </div>
-</footer>
+    </section>
 
-<!-- WHATSAPP -->
-<a href="https://wa.me/33744934330" target="_blank" class="whatsapp">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <img src="./assets/images/Logo Conciergerie (1).png" alt="First In Formation" style="height: 40px;">
+                    <p>
+                        La formation de référence pour créer et développer
+                        votre conciergerie de luxe rentable.
+                    </p>
+                </div>
 
-<script>
-gsap.registerPlugin(ScrollTrigger);
+                <div class="footer-col">
+                    <div class="footer-title">Programme</div>
+                    <ul class="footer-links">
+                        <li><a href="presentation.html">Présentation</a></li>
+                        <li><a href="#">Modules</a></li>
+                        <li><a href="#">Tarifs</a></li>
+                    </ul>
+                </div>
 
-// Nav scroll
-window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-});
+                <div class="footer-col">
+                    <div class="footer-title">Ressources</div>
+                    <ul class="footer-links">
+                        <li><a href="vos-reussites.html">Success Stories</a></li>
+                        <li><a href="a-propos.html">À Propos</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
 
-// Reveal animations
-document.querySelectorAll('.reveal').forEach(el => {
-    gsap.to(el, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 85%' }
-    });
-});
+                <div class="footer-col">
+                    <div class="footer-title">Contact</div>
+                    <ul class="footer-links">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">contact@first-in.fr</a></li>
+                    </ul>
+                </div>
+            </div>
 
-document.querySelectorAll('.reveal-left').forEach(el => {
-    gsap.to(el, {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 85%' }
-    });
-});
+            <div class="footer-bottom">
+                <div>© 2025 First In Formation. Tous droits réservés.</div>
+                <div>Mentions légales · Confidentialité</div>
+            </div>
+        </div>
+    </footer>
 
-document.querySelectorAll('.reveal-right').forEach(el => {
-    gsap.to(el, {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 85%' }
-    });
-});
+    <script>
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
 
-// Parallax immersion
-gsap.to('.immersion-bg img', {
-    yPercent: 20,
-    ease: 'none',
-    scrollTrigger: {
-        trigger: '.immersion',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true
-    }
-});
-</script>
+        // Hero animations
+        gsap.from('.hero-badge', { opacity: 0, y: 30, duration: 1, delay: 0.3 });
+        gsap.from('.hero-title span', { opacity: 0, y: 50, duration: 1, stagger: 0.15, delay: 0.5 });
+        gsap.from('.hero-subtitle', { opacity: 0, y: 30, duration: 1, delay: 1 });
+        gsap.from('.hero-cta-group', { opacity: 0, y: 30, duration: 1, delay: 1.2 });
+        gsap.from('.hero-proof', { opacity: 0, y: 30, duration: 1, delay: 1.4 });
+        gsap.from('.hero-visual-card', { opacity: 0, scale: 0.9, duration: 1.2, delay: 0.8, ease: 'power3.out' });
+        gsap.from('.hero-floating-stat', { opacity: 0, scale: 0.8, duration: 0.8, stagger: 0.2, delay: 1.5 });
+
+        // Vision cards
+        gsap.from('.vision-card', {
+            scrollTrigger: { trigger: '.vision-grid', start: 'top 80%' },
+            opacity: 0,
+            y: 60,
+            duration: 0.8,
+            stagger: 0.15
+        });
+
+        // Founder section
+        gsap.from('.founder-image-wrapper', {
+            scrollTrigger: { trigger: '.founder', start: 'top 70%' },
+            opacity: 0,
+            x: -80,
+            duration: 1
+        });
+        gsap.from('.founder-content > *', {
+            scrollTrigger: { trigger: '.founder', start: 'top 70%' },
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            stagger: 0.15
+        });
+
+        // Stats counter animation
+        gsap.from('.stat-item', {
+            scrollTrigger: { trigger: '.stats', start: 'top 80%' },
+            opacity: 0,
+            y: 40,
+            duration: 0.6,
+            stagger: 0.1
+        });
+
+        // Programme cards
+        gsap.from('.programme-card', {
+            scrollTrigger: { trigger: '.programme-cards', start: 'top 80%' },
+            opacity: 0,
+            y: 60,
+            duration: 0.8,
+            stagger: 0.15
+        });
+
+        // Testimonial
+        gsap.from('.testimonial-main', {
+            scrollTrigger: { trigger: '.testimonials', start: 'top 70%' },
+            opacity: 0,
+            y: 60,
+            duration: 1
+        });
+
+        // Final CTA
+        gsap.from('.cta-final-container > *', {
+            scrollTrigger: { trigger: '.cta-final', start: 'top 70%' },
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            stagger: 0.15
+        });
+
+        // Smooth parallax on hero background
+        gsap.to('.hero-bg img', {
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            },
+            y: 150
+        });
+    </script>
 
 </body>
 </html>
