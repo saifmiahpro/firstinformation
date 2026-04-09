@@ -267,6 +267,11 @@
             object-fit: cover;
             opacity: 0.2;
         }
+        .hero-bg img.hero-bg-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
         .hero-overlay {
             position: absolute; inset: 0;
             background:
@@ -406,18 +411,29 @@
         /* Mobile: show stats as horizontal row instead of hiding */
         .hero-proof-mobile {
             display: none;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 32px;
+            margin-top: 36px;
         }
         .hero-proof-mobile .hero-proof-item {
             flex: 1;
-            min-width: 100px;
+            min-width: 90px;
             text-align: center;
-            padding: 14px 8px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
+            padding: 16px 10px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+        }
+        .hero-proof-mobile .hero-proof-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--green-lighter);
+        }
+        .hero-proof-mobile .hero-proof-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.55);
+            margin-top: 2px;
         }
         .hero-card {
             position: absolute;
@@ -1354,6 +1370,66 @@
         }
 
         /* ═══════════════════════════════════════
+           VIDEO PRESENTATION
+        ═══════════════════════════════════════ */
+        .video-section {
+            background: var(--white);
+            padding: 100px 5%;
+        }
+        .video-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--green-deep);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 40px;
+            cursor: pointer;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+        .video-wrapper img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+        .video-play-btn {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px; height: 80px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s;
+        }
+        .video-wrapper:hover .video-play-btn {
+            background: rgba(255,255,255,0.25);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+        .video-play-btn svg { margin-left: 4px; }
+        .video-coming {
+            position: absolute;
+            bottom: 20px; left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 20px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        /* ═══════════════════════════════════════
            STICKY CTA MOBILE
         ═══════════════════════════════════════ */
         .sticky-cta {
@@ -1440,9 +1516,7 @@
     ═══════════════════════════════════════ -->
     <section class="hero">
         <div class="hero-bg">
-            <video autoplay muted loop playsinline preload="none" poster="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=60">
-                <source src="https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4" type="video/mp4">
-            </video>
+            <img class="hero-bg-img" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80" alt="">
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-grid-pattern"></div>
@@ -1512,18 +1586,35 @@
     <!-- CRÉDIBILITÉ -->
     <section class="credibility">
         <div class="credibility-inner">
-            <p class="credibility-text">Reconnu par les médias et plateformes leaders</p>
+            <p class="credibility-text">Ils parlent de nous</p>
             <div class="credibility-logos">
-                <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/3/3a/Logo_La_D%C3%A9p%C3%AAche_du_Midi_%282020%29.svg/200px-Logo_La_D%C3%A9p%C3%AAche_du_Midi_%282020%29.svg.png" alt="La Dépêche" class="credibility-logo">
+                <a href="https://www.ladepeche.fr/2024/10/10/la-success-story-de-yacine-22-ans-chef-dentreprise-dune-conciergerie-a-dubai-12247558.php" target="_blank" rel="noopener">
+                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/65/Logo_La_D%C3%A9p%C3%AAche.svg/3840px-Logo_La_D%C3%A9p%C3%AAche.svg.png" alt="La Dépêche" class="credibility-logo" style="height: 28px;">
+                </a>
+                <img src="https://assets.skool.com/f/dfef480fe8474625b514ca1bcb05c242/8260637b7f0645e2b2450f1020863004fd0dd41c2ea14e078fb179f6b56d67d1" alt="Skool" class="credibility-logo" style="height: 26px;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Meta_Platforms_Inc._logo.svg/200px-Meta_Platforms_Inc._logo.svg.png" alt="Meta" class="credibility-logo">
-                <img src="https://assets.skool.com/skool/e0ca06c3808a49b68d522c1ebef58ba6.png" alt="Skool" class="credibility-logo" style="height: 18px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Groupe_M6_logo.svg/200px-Groupe_M6_logo.svg.png" alt="Groupe M6" class="credibility-logo">
             </div>
         </div>
     </section>
 
-    <!-- FONDATEUR — BLANC -->
-    <section class="section section-white" id="fondateur">
+    <!-- VIDÉO PRÉSENTATION — BLANC -->
+    <section class="video-section">
+        <div class="video-inner fade-up">
+            <div class="section-label section-label-center" style="justify-content:center;">Présentation</div>
+            <h2 class="section-heading">Découvrez la formation en <em>vidéo</em></h2>
+            <p class="section-desc" style="margin: 0 auto;">Yacine vous explique en détail ce que First In Formation peut vous apporter.</p>
+            <div class="video-wrapper">
+                <img src="https://images.unsplash.com/photo-1582407947092-34d2c1b72f03?w=1200&q=80" alt="Présentation vidéo First In Formation" loading="lazy">
+                <div class="video-play-btn">
+                    <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <div class="video-coming">Vidéo de présentation — bientôt disponible</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FONDATEUR — CREAM -->
+    <section class="section section-cream" id="fondateur">
         <div class="section-inner">
             <div class="founder-grid">
                 <div class="founder-img-wrap fade-up">
