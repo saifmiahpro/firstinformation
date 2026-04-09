@@ -357,6 +357,33 @@
             flex-wrap: wrap;
             margin-bottom: 10px;
         }
+        /* Scroll indicator */
+        .hero-scroll {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.35);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .hero-scroll-arrow {
+            width: 20px; height: 20px;
+            border-right: 1.5px solid rgba(255,255,255,0.4);
+            border-bottom: 1.5px solid rgba(255,255,255,0.4);
+            transform: rotate(45deg);
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+        @keyframes scrollBounce {
+            0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; }
+            50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
         .btn-main {
             display: inline-flex;
             align-items: center;
@@ -547,6 +574,9 @@
             transition: all 0.4s;
         }
         .credibility-logo:hover { opacity: 0.7; filter: grayscale(0%); }
+        @media (max-width: 900px) {
+            .credibility-logo { opacity: 0.6; filter: grayscale(0%); }
+        }
 
         /* ═══════════════════════════════════════
            FOUNDER
@@ -1539,6 +1569,11 @@
                     <div class="hero-stat-lbl">Réussite</div>
                 </div>
             </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="hero-scroll-arrow"></div>
         </div>
     </section>
 
