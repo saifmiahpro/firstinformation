@@ -32,12 +32,8 @@
         @keyframes pBarIn{to{opacity:1}}
         .preloader-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--green-lighter),var(--green-light));animation:pFill 1.2s cubic-bezier(.4,0,.2,1) .7s forwards}
         @keyframes pFill{to{width:100%}}
-        .preloader.exit{animation:pShrink .7s cubic-bezier(.7,0,.3,1) forwards}
-        @keyframes pShrink{0%{clip-path:circle(100% at 50% 50%)}100%{clip-path:circle(0% at 50% 50%)}}
-        .page-wrapper{will-change:clip-path}
-        body.loading .page-wrapper{clip-path:circle(0% at 50% 50%)}
-        body.loaded .page-wrapper{animation:cExpand .8s cubic-bezier(.16,1,.3,1) .1s both}
-        @keyframes cExpand{0%{clip-path:circle(0% at 50% 50%)}100%{clip-path:circle(150% at 50% 50%)}}
+        .preloader.exit{animation:pOut .6s cubic-bezier(.4,0,.2,1) forwards}
+        @keyframes pOut{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
     </style>
 </head>
 <body class="loading">
