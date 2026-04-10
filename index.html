@@ -158,6 +158,79 @@
         }
         .nav-cta:hover { transform: translateY(-1px); }
 
+        /* Nav dropdown */
+        .nav-dropdown {
+            position: relative;
+        }
+        .nav-dropdown > a {
+            display: flex; align-items: center; gap: 4px;
+        }
+        .nav-dropdown > a svg { transition: transform 0.3s; }
+        .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            min-width: 200px;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            padding: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 200;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .nav-dropdown-menu a {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--gray-700) !important;
+            transition: background 0.2s;
+        }
+        .nav-dropdown-menu a:hover {
+            background: var(--cream);
+        }
+        .nav-dropdown-menu a::after { display: none; }
+        .nav-dropdown-menu .city-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--green-accent);
+            flex-shrink: 0;
+        }
+
+        /* WhatsApp floating button — desktop */
+        .wa-float {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            width: 56px; height: 56px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+            z-index: 98;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+        .wa-float:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 30px rgba(37,211,102,0.45);
+        }
+        @media (max-width: 900px) {
+            .wa-float { display: none; }
+        }
+
         /* ═══════════════════════════════════════
            NAVIGATION MOBILE
         ═══════════════════════════════════════ */
@@ -1497,6 +1570,15 @@
             <div class="nav-links">
                 <a href="index.html">Accueil</a>
                 <a href="presentation.html">Présentation</a>
+                <div class="nav-dropdown">
+                    <a href="https://www.firstinconciergerie.com/" target="_blank">Nos Conciergeries <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></a>
+                    <div class="nav-dropdown-menu">
+                        <a href="https://www.firstinconciergerie.com/" target="_blank"><span class="city-dot"></span> Paris</a>
+                        <a href="https://www.firstinconciergerie.com/" target="_blank"><span class="city-dot"></span> Dubaï</a>
+                        <a href="https://www.firstinconciergerie.com/" target="_blank"><span class="city-dot"></span> Abu Dhabi</a>
+                        <a href="https://www.firstinconciergerie.com/" target="_blank"><span class="city-dot"></span> Marrakech</a>
+                    </div>
+                </div>
                 <a href="a-propos.html">À propos</a>
                 <a href="vos-reussites.html">Vos réussites</a>
             </div>
@@ -1512,6 +1594,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="index.html">Accueil</a>
         <a href="presentation.html">Présentation</a>
+        <a href="https://www.firstinconciergerie.com/" target="_blank">Nos Conciergeries</a>
         <a href="a-propos.html">À propos</a>
         <a href="vos-reussites.html">Vos réussites</a>
         <a href="contact.html">Contactez-nous</a>
@@ -1875,6 +1958,11 @@
             <div class="cta-guarantee"><svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>Garantie satisfait ou remboursé 7 jours</div>
         </div>
     </section>
+
+    <!-- WHATSAPP FLOATING — DESKTOP -->
+    <a href="https://wa.me/33744934330?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20la%20formation" target="_blank" class="wa-float" aria-label="WhatsApp">
+        <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.462-1.496A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+    </a>
 
     <!-- STICKY CTA MOBILE -->
     <div class="sticky-cta" id="stickyCta">
