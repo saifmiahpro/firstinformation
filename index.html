@@ -213,22 +213,34 @@
         .wa-float {
             position: fixed;
             bottom: 28px; right: 28px;
-            display: flex; align-items: center; gap: 10px;
+            display: flex; align-items: center; gap: 0;
             background: #25D366;
-            border-radius: 100px;
-            padding: 14px 24px 14px 18px;
+            border-radius: 50%;
+            width: 56px; height: 56px;
+            justify-content: center;
             color: var(--white);
             font-size: 14px;
             font-weight: 600;
             box-shadow: 0 4px 24px rgba(37,211,102,0.35);
             z-index: 98;
-            transform: translateY(80px);
-            opacity: 0;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
+            overflow: hidden;
         }
-        .wa-float.visible {
-            transform: translateY(0);
+        .wa-float .wa-text {
+            max-width: 0;
+            opacity: 0;
+            white-space: nowrap;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .wa-float.expanded {
+            border-radius: 100px;
+            width: auto;
+            padding: 14px 24px 14px 18px;
+            gap: 10px;
+        }
+        .wa-float.expanded .wa-text {
+            max-width: 200px;
             opacity: 1;
         }
         .wa-float:hover {
@@ -1712,29 +1724,19 @@
     </section>
 
     <!-- FONDATEUR — CREAM -->
-    <section class="section section-cream" id="fondateur">
+    <section class="section section-cream" id="fondateur" style="padding: 80px 5%;">
         <div class="section-inner">
-            <div class="founder-grid">
-                <div class="founder-img-wrap fade-up">
-                    <div class="founder-img">
-                        <img src="./assets/images/image.png" alt="Yacine - Fondateur First In Formation">
-                    </div>
-                    <div class="founder-badge">
-                        <div class="founder-badge-val">+5 ans</div>
-                        <div class="founder-badge-lbl">d'expérience terrain</div>
-                    </div>
+            <div class="fade-up" style="display: flex; align-items: center; gap: 40px; max-width: 800px; margin: 0 auto; padding: 48px; background: var(--white); border-radius: 24px; border: 1px solid var(--gray-200);">
+                <div style="flex-shrink: 0;">
+                    <img src="./assets/images/image.png" alt="Yacine" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--cream);">
                 </div>
-                <div class="fade-up">
-                    <p class="founder-greeting">Bonjour à tous,</p>
-                    <h2 class="founder-name">Moi c'est Yacine.</h2>
-                    <div class="founder-text">
-                        <p style="font-size: 18px; line-height: 1.7; color: var(--gray-700);"><em>Je voulais construire quelque chose qui compte.</em></p>
-                    </div>
-                    <div style="margin-top: 28px;">
-                        <a href="a-propos.html" class="btn-secondary" style="border-color: var(--green-accent); color: var(--green-accent); display: inline-flex; align-items: center; gap: 8px;">
-                            Découvrir mon histoire <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
+                <div>
+                    <p class="founder-greeting" style="margin-bottom: 4px;">Bonjour à tous,</p>
+                    <h2 class="founder-name" style="margin-bottom: 16px;">Moi c'est Yacine.</h2>
+                    <p style="font-family: 'Playfair Display', serif; font-size: 19px; font-style: italic; line-height: 1.5; color: var(--gray-600); margin-bottom: 24px;">Je voulais construire quelque chose qui compte.</p>
+                    <a href="a-propos.html" class="btn-secondary" style="border-color: var(--green-accent); color: var(--green-accent); display: inline-flex; align-items: center; gap: 8px; border-radius: 100px; padding: 12px 24px; font-size: 14px;">
+                        Découvrir mon histoire <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1972,8 +1974,8 @@
 
     <!-- WHATSAPP FLOATING — DESKTOP -->
     <a href="https://wa.me/33744934330?text=Bonjour%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20la%20formation" target="_blank" class="wa-float" id="waFloat" aria-label="WhatsApp">
-        <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.462-1.496A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-        Contactez-nous
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.462-1.496A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+        <span class="wa-text">Contactez-nous</span>
     </a>
 
     <!-- STICKY CTA MOBILE -->
@@ -2112,13 +2114,13 @@
         }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
         fadeEls.forEach(el => fadeObserver.observe(el));
 
-        // Sticky CTA mobile + WhatsApp float desktop — show after hero
+        // Sticky CTA mobile + WhatsApp float desktop
         const stickyCta = document.getElementById('stickyCta');
         const waFloat = document.getElementById('waFloat');
         window.addEventListener('scroll', () => {
             const pastHero = window.scrollY > window.innerHeight * 0.8;
             if (stickyCta) stickyCta.classList.toggle('visible', pastHero);
-            if (waFloat) waFloat.classList.toggle('visible', pastHero);
+            if (waFloat) waFloat.classList.toggle('expanded', pastHero);
         });
 
         // Animated counters — count from 0 to target on scroll
